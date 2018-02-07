@@ -1,0 +1,32 @@
+.chapter(data-title='Learn to build a RingCentral App with Ringcentral Widgets')
+  .step(data-title='Prerequisites', data-file='README.md', data-highlight='4-15')
+    :markdown
+      ## Prerequisites
+
+      * Install Node.js with version >= 8
+      * Create a [RingCentral developer free account](https://developer.ringcentral.com)
+      * Create a new RingCentral app with platform type - "Browser Based"
+
+  .step(data-title='Initialize project', data-file='README.md', data-highlight='19-25')
+    :markdown
+      ## Initialize project by `Generator Ringcentral Widgets`
+
+      ```
+      $ mkdir ringcentral-widgets-demo
+      $ cd ringcentral-widgets-demo
+      $ yo ringcentral-widgets
+      ```
+
+  .step(data-title='Update .env', data-file='.env.default')
+    :markdown
+      Update .env
+
+  .step(data-title='Start development server', data-file='README.md', data-highlight='36-40')
+    :markdown
+      Start development server
+
+      ```
+      yarn start
+      ```
+
+      Visit on `http://localhost:8080` in browser
