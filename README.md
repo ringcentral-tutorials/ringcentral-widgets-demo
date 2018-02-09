@@ -38,3 +38,18 @@ Start Development Server
 ```bash
 $ yarn start
 ```
+
+Build for production
+
+Update REDIRECT_URI and API_SERVER with config in production
+
+```
+API_SERVER=https://platform.ringcentral.com
+REDIRECT_URI=your_host_address/redirect.html
+```
+
+```bash
+$ yarn build
+```
+
+Upload files in release folder to your web host.
