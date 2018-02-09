@@ -1,32 +1,103 @@
 .chapter(data-title='Learn to build a RingCentral App with Ringcentral Widgets')
-  .step(data-title='Prerequisites', data-file='README.md', data-highlight='4-15')
-    :markdown
-      ## Prerequisites
+  .chapter(data-title='Get started')
+    .step(data-title='Prerequisites', data-file='README.md', data-highlight='4-15')
+      :markdown
+        ## Prerequisites
 
-      * Install Node.js with version >= 8
-      * Create a [RingCentral developer free account](https://developer.ringcentral.com)
-      * Create a new RingCentral app with platform type - "Browser Based"
+        * Install Node.js with version >= 8
+        * Create a [RingCentral developer free account](https://developer.ringcentral.com)
+        * Create a new RingCentral app with platform type - "Browser Based"
+        * Add `Read Accounts` and `Subscription Webhook` to permissions
+        * install `yo` and `generator-ringcentral-widgets`
 
-  .step(data-title='Initialize project', data-file='README.md', data-highlight='19-25')
-    :markdown
-      ## Initialize project by `Generator Ringcentral Widgets`
+    .step(data-title='Initialize base project', data-file='README.md', data-highlight='19-25')
+      :markdown
+        ### Initialize project
 
-      ```
-      $ mkdir ringcentral-widgets-demo
-      $ cd ringcentral-widgets-demo
-      $ yo ringcentral-widgets
-      ```
+        we initialize widgets project with [Generator Ringcentral Widgets](https://github.com/embbnux/generator-ringcentral-widgets).
 
-  .step(data-title='Update .env', data-file='.env.default')
-    :markdown
-      Update .env
+        ```
+        $ mkdir ringcentral-widgets-demo
+        $ cd ringcentral-widgets-demo
+        $ yo ringcentral-widgets
+        ```
 
-  .step(data-title='Start development server', data-file='README.md', data-highlight='36-40')
-    :markdown
-      Start development server
+        ### Read more
 
-      ```
-      yarn start
-      ```
+        The app is based on [RingCentral Commons](https://github.com/ringcentral/ringcentral-js-integration-commons) and [RingCentral Widgets](https://github.com/ringcentral/ringcentral-js-widgets).
 
-      Visit on `http://localhost:8080` in browser
+        Commons modules are built with [RcModule](https://github.com/ringcentral/ringcentral-js-integration-commons/blob/master/docs/creating-modules.md) and [Dependency Injection](https://github.com/ringcentral/ringcentral-js-integration-commons/blob/master/docs/dependency-injection.md).
+
+        RingCentral Commons depend on [Redux](https://redux.js.org/).
+
+        RingCentral Widgets depend on [React](https://github.com/facebook/react) and [RingCentral Commons](https://github.com/ringcentral/ringcentral-js-integration-commons).
+
+    .step(data-title='Update .env file', data-file='.env.default')
+      :markdown
+        Update .env with app info in ringcentral developer website.
+
+        ```
+        vim .env
+        ```
+
+        `API_CLIENT_ID` is your ringcentral app client id.
+
+        `API_CLIENT_SECRET` is your ringcentral app client secret.
+
+        `API_SERVER` is ringcentral api server, `https://platform.devtest.ringcentral.com` for sandbox environment and `https://platform.ringcentral.com` for production.
+
+        `REDIRECT_URI` is redirect uri that needs to add in your app settings in RingCentral Developer Website. For development in local, it should be `http://localhost:8080/redirect.html`. After your deploy this app to network space, it should be `your_host_address/redirect.html`.
+
+    .step(data-title='Start development server', data-file='README.md', data-highlight='36-40')
+      :markdown
+        Start development server
+
+        ```
+        yarn start
+        ```
+
+        Visit on [http://localhost:8080](http://localhost:8080) in browser
+
+   .chapter(data-title='Add call history feature to App')
+    .step(data-title='Add call history feature to App', data-file='README.md')
+      :markdown
+         Now you have finished a based RingCentral app with Widgets. So let's start to add call history feature to it.
+
+         It includes 3 steps:
+
+         * Add call history related modules to Phone module
+         * Add call history UI container and router to App container
+         * Add call history and active calls tab to MainView
+
+         ### Add permissions
+
+         Before we start, you need to add `Read CallLog` and `Edit Presence` permissions to your [RingCentral app](https://developer.ringcentral.com).
+
+    .step(data-title='Add call history related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='25-28,57-60')
+      :markdown
+        ## Update Phone module
+
+        * Import call history related modules
+        * Add call history related modules to dependences
+
+    .step(data-title='Add call history UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='12-13,79-90')
+      :markdown
+        ## Update App container
+
+        * Import `ActiveCallsPage` and `CallHistoryPage`
+        * Add containers to routers
+
+    .step(data-title='Add call history and active calls tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='9-10,13-14,18-32')
+      :markdown
+        ## Update App container
+
+        * Import tab icon
+        * Add `Active Calls` and `Call History` tab
+
+    .step(data-title='Play with Call History feature', data-file='README.md')
+      :markdown
+        ## Play with Call History feature
+
+        Congradulations! Now you have finished adding call history feature to your app.
+
+        Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
