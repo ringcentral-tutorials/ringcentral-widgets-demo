@@ -4,7 +4,7 @@ A new RingCentral Widgets Based demo app
 
 ## Prerequisites
 
-* Install Node.js with version > 8
+* Install Node.js with version >= 8
 * Install NPM or Yarn
 * Create a [RingCentral developer free account](https://developer.ringcentral.com) to create a new app with platform type - "Browser Based"
 * Install [Yeoman](http://yeoman.io) and [Generator Ringcentral Widgets](https://github.com/embbnux/generator-ringcentral-widgets)
