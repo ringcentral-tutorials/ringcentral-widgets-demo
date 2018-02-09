@@ -9,6 +9,8 @@ import RegionSettingsPage from 'ringcentral-widgets/containers/RegionSettingsPag
 
 import SettingsPage from 'ringcentral-widgets/containers/SettingsPage';
 import WelcomePage from 'ringcentral-widgets/containers/WelcomePage';
+import ActiveCallsPage from 'ringcentral-widgets/containers/ActiveCallsPage';
+import CallHistoryPage from 'ringcentral-widgets/containers/CallHistoryPage';
 
 import AlertContainer from 'ringcentral-widgets/containers/AlertContainer';
 
@@ -73,6 +75,18 @@ export default function App({
               <Route
                 path="/settings/calling"
                 component={CallingSettingsPage}
+              />
+              <Route
+                path="/calls"
+                component={ActiveCallsPage}
+              />
+              <Route
+                path="/history"
+                component={() => (
+                  <CallHistoryPage
+                    showContactDisplayPlaceholder={false}
+                  />
+                )}
               />
             </Route>
           </Route>

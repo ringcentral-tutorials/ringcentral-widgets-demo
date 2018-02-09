@@ -22,6 +22,11 @@ import RateLimiter from 'ringcentral-integration/modules/RateLimiter';
 import Subscription from 'ringcentral-integration/modules/Subscription';
 import Storage from 'ringcentral-integration/modules/Storage';
 
+import CallLog from 'ringcentral-integration/modules/CallLog';
+import CallMonitor from 'ringcentral-integration/modules/CallMonitor';
+import CallHistory from 'ringcentral-integration/modules/CallHistory';
+import DetailedPresence from 'ringcentral-integration/modules/DetailedPresence';
+
 import OAuth from 'ringcentral-widgets/modules/ProxyFrameOAuth';
 import RouterInteraction from 'ringcentral-widgets/modules/RouterInteraction';
 
@@ -49,6 +54,10 @@ import RouterInteraction from 'ringcentral-widgets/modules/RouterInteraction';
     { provide: 'RolesAndPermissions', useClass: RolesAndPermissions },
     { provide: 'ExtensionInfo', useClass: ExtensionInfo },
     { provide: 'DialingPlan', useClass: DialingPlan },
+    { provide: 'CallLog', useClass: CallLog },
+    { provide: 'CallMonitor', useClass: CallMonitor },
+    { provide: 'CallHistory', useClass: CallHistory },
+    { provide: 'DetailedPresence', useClass: DetailedPresence },
     {
       provide: 'EnvironmentOptions',
       useFactory: ({ sdkConfig }) => sdkConfig,
