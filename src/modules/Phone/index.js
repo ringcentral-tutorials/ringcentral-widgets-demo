@@ -27,6 +27,17 @@ import CallMonitor from 'ringcentral-integration/modules/CallMonitor';
 import CallHistory from 'ringcentral-integration/modules/CallHistory';
 import DetailedPresence from 'ringcentral-integration/modules/DetailedPresence';
 
+import Call from 'ringcentral-integration/modules/Call';
+import Softphone from 'ringcentral-integration/modules/Softphone';
+import Ringout from 'ringcentral-integration/modules/Ringout';
+import NumberValidate from 'ringcentral-integration/modules/NumberValidate';
+import CallingSettings from 'ringcentral-integration/modules/CallingSettings';
+import AudioSettings from 'ringcentral-integration/modules/AudioSettings';
+import AccountExtension from 'ringcentral-integration/modules/AccountExtension';
+import ExtensionPhoneNumber from 'ringcentral-integration/modules/ExtensionPhoneNumber';
+import ForwardingNumber from 'ringcentral-integration/modules/ForwardingNumber';
+import DialerUI from 'ringcentral-widgets/modules/DialerUI';
+
 import OAuth from 'ringcentral-widgets/modules/ProxyFrameOAuth';
 import RouterInteraction from 'ringcentral-widgets/modules/RouterInteraction';
 
@@ -58,6 +69,16 @@ import RouterInteraction from 'ringcentral-widgets/modules/RouterInteraction';
     { provide: 'CallMonitor', useClass: CallMonitor },
     { provide: 'CallHistory', useClass: CallHistory },
     { provide: 'DetailedPresence', useClass: DetailedPresence },
+    { provide: 'Call', useClass: Call },
+    { provide: 'DialerUI', useClass: DialerUI },
+    { provide: 'Softphone', useClass: Softphone },
+    { provide: 'Ringout', useClass: Ringout },
+    { provide: 'NumberValidate', useClass: NumberValidate },
+    { provide: 'CallingSettings', useClass: CallingSettings },
+    { provide: 'AudioSettings', useClass: AudioSettings },
+    { provide: 'AccountExtension', useClass: AccountExtension },
+    { provide: 'ExtensionPhoneNumber', useClass: ExtensionPhoneNumber },
+    { provide: 'ForwardingNumber', useClass: ForwardingNumber },
     {
       provide: 'EnvironmentOptions',
       useFactory: ({ sdkConfig }) => sdkConfig,
@@ -96,6 +117,10 @@ export default class BasePhone extends RcModule {
           this.routerInteraction.currentPath === '/' &&
           this.auth.loggedIn
         ) {
+          if (this.dialerUI) {
+            this.routerInteraction.push('/dialer');
+            return;
+          }
           this.routerInteraction.push('/settings');
         }
       }

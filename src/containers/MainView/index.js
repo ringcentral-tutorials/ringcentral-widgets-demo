@@ -14,7 +14,16 @@ import CallsHoverIcon from 'ringcentral-widgets/assets/images/CallsHover.svg';
 import HistoryHoverIcon from 'ringcentral-widgets/assets/images/CallHistoryHover.svg';
 import SettingsHoverIcon from 'ringcentral-widgets/assets/images/SettingsHover.svg';
 
+import DialPadIcon from 'ringcentral-widgets/assets/images/DialPadNav.svg';
+import DialPadHoverIcon from 'ringcentral-widgets/assets/images/DialPadHover.svg';
+
 const TABS = [
+  {
+    icon: DialPadIcon,
+    activeIcon: DialPadHoverIcon,
+    label: 'Dial Pad',
+    path: '/dialer',
+  },
   {
     icon: CallsIcon,
     activeIcon: CallsHoverIcon,
