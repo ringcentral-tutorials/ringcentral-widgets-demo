@@ -14,7 +14,7 @@
       :markdown
         ### Initialize project
 
-        we initialize widgets project with [Generator Ringcentral Widgets](https://github.com/embbnux/generator-ringcentral-widgets).
+        we initialize widgets project with [Generator RingCentral Widgets](https://github.com/embbnux/generator-ringcentral-widgets).
 
         ```
         $ mkdir ringcentral-widgets-demo
@@ -58,7 +58,20 @@
 
         Visit on [http://localhost:8080](http://localhost:8080) in browser
 
-   .chapter(data-title='Add call history feature to App')
+    .step(data-title='Build for production', data-file='README.md', data-highlight='42-55')
+      :markdown
+        Build for production
+
+        * Update `.env` file with production config, such as `API_SERVER` and `REDIRECT_URI`.
+        * Build project
+
+        ```
+        $ yarn build
+        ```
+
+        * Upload files in release folder to your network space and visit it in browser.
+
+  .chapter(data-title='Add call history feature to App')
     .step(data-title='Add call history feature to App', data-file='README.md')
       :markdown
          Now you have finished a based RingCentral app with Widgets. So let's start to add call history feature to it.
@@ -73,7 +86,7 @@
 
          Before we start, you need to add `Read CallLog` and `Edit Presence` permissions to your [RingCentral app](https://developer.ringcentral.com).
 
-    .step(data-title='Add call history related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='25-28,57-60')
+    .step(data-title='Add call history related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='25-28,68-71')
       :markdown
         ## Update Phone module
 
@@ -87,9 +100,9 @@
         * Import `ActiveCallsPage` and `CallHistoryPage`
         * Add containers to routers
 
-    .step(data-title='Add call history and active calls tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='9-10,13-14,18-32')
+    .step(data-title='Add call history and active calls tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='9-10,13-14,27-41')
       :markdown
-        ## Update App container
+        ## Update tabs
 
         * Import tab icon
         * Add `Active Calls` and `Call History` tab
@@ -99,5 +112,46 @@
         ## Play with Call History feature
 
         Congradulations! Now you have finished adding call history feature to your app.
+
+        Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
+  .chapter(data-title='Add ringout call feature to App')
+    .step(data-title='Add call history feature to App', data-file='README.md')
+      :markdown
+        In this section, we will add RingOut Call feature to your ringcentral widgets app.
+
+        It includes 3 steps:
+
+        * Add call related modules to Phone module
+        * Add call related container and router to App container
+        * Add dialer tab to MainView
+
+        ### Add permissions
+
+        Before we start, you need to add `RingOut` permissions to your [RingCentral app](https://developer.ringcentral.com).
+
+    .step(data-title='Add call related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='30-39,72-81')
+      :markdown
+        ## Update Phone module
+
+        * Import call related modules
+        * Add call related modules to dependences
+
+    .step(data-title='Add call UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='7,9,91-98')
+      :markdown
+        ## Update App container
+
+        * Import `CallingSettingsPage` and `DialerPage`
+        * Add containers to routers
+    .step(data-title='Add dialer tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='17-18,21-26')
+      :markdown
+        ## Add dialer tab
+
+        * Import tab icon
+        * Add `Active Calls` and `Call History` tab
+    .step(data-title='Play with RingOut Call feature', data-file='README.md')
+      :markdown
+        ## Play with Call feature
+
+        Congradulations! Now you have finished adding call feature to your app. Now it supports to call with RingCentral Desktop and RingOut mode. Change calling mode in Calling Setting on Setting Page.
 
         Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
