@@ -1,6 +1,6 @@
 # Ringcentral Widgets Demo
 
-A new RingCentral Widgets Based demo app
+A new RingCentral Widgets Based demo app. Get online tutorial about how to build this app in [here](https://embbnux.github.io/ringcentral-widgets-demo/).
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ $ yarn install -g generator-ringcentral-widgets
 
 ## Start
 
-Initialize Widgets App by `Generator Ringcentral Widgets`
+### Initialize Widgets App by `Generator Ringcentral Widgets`
 
 ```bash
 $ mkdir ringcentral-widgets-demo
@@ -24,7 +24,7 @@ $ cd ringcentral-widgets-demo
 $ yo ringcentral-widgets
 ```
 
-Update config file `.env`
+### Update config file `.env`
 
 ```
 API_CLIENT_ID=your ringcentral app client id
@@ -33,13 +33,13 @@ API_SERVER=ringcentral api server, eg: https://platform.devtest.ringcentral.com
 REDIRECT_URI=your redirect uri, eg: http://localhost:8080/redirect.html
 ```
 
-Start Development Server
+### Start Development Server
 
 ```bash
 $ yarn start
 ```
 
-Build for production
+### Build for production
 
 Update REDIRECT_URI and API_SERVER with config in production
 
@@ -53,3 +53,9 @@ $ yarn build
 ```
 
 Upload files in release folder to your web host.
+
+## [Tutorials](https://embbnux.github.io/ringcentral-widgets-demo/)
+
+* Create a base RingCentral Widget Project
+* Add call history feature to App
+* Add ringout call feature to App
