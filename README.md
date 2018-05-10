@@ -7,29 +7,28 @@ A new RingCentral Widgets Based demo app. Get online tutorial about how to build
 * Install Node.js with version >= 8
 * Install NPM or Yarn
 * Create a [RingCentral developer free account](https://developer.ringcentral.com) to create a new app with platform type - "Browser Based"
-* Install [Yeoman](http://yeoman.io) and [Generator Ringcentral Widgets](https://github.com/embbnux/generator-ringcentral-widgets)
+* Install [Ringcentral Widgets CLI](https://github.com/ringcentral/ringcentral-js-widgets/tree/master/packages/ringcentral-widgets-cli)
 
 ```bash
-$ yarn install -g yo
-$ yarn install -g generator-ringcentral-widgets
+$ npm install -g ringcentral-widgets-cli
 ```
 
 ## Start
 
-### Initialize Widgets App by `Generator Ringcentral Widgets`
+### Initialize Widgets App by `Ringcentral Widgets CLI`
 
 ```bash
-$ mkdir ringcentral-widgets-demo
+$ rc-widgets new ringcentral-widgets-demo
 $ cd ringcentral-widgets-demo
-$ yo ringcentral-widgets
+$ yarn
 ```
 
 ### Update config file `.env`
 
 ```
-API_CLIENT_ID=your ringcentral app client id
-API_CLIENT_SECRET=your ringcentral app client secret
-API_SERVER=ringcentral api server, eg: https://platform.devtest.ringcentral.com
+RINGCENTRAL_CLIENT_ID=your ringcentral app client id
+RINGCENTRAL_CLIENT_SECRET=your ringcentral app client secret
+RINGCENTRAL_SERVER_URL=ringcentral api server, eg: https://platform.devtest.ringcentral.com
 REDIRECT_URI=your redirect uri, eg: http://localhost:8080/redirect.html
 ```
 
@@ -41,10 +40,10 @@ $ yarn start
 
 ### Build for production
 
-Update REDIRECT_URI and API_SERVER with config in production
+Update REDIRECT_URI and RINGCENTRAL_SERVER_URL with config in production
 
 ```
-API_SERVER=https://platform.ringcentral.com
+RINGCENTRAL_SERVER_URL=https://platform.ringcentral.com
 REDIRECT_URI=your_host_address/redirect.html
 ```
 
@@ -56,6 +55,7 @@ Upload files in release folder to your web host.
 
 ## [Tutorials](https://embbnux.github.io/ringcentral-widgets-demo/)
 
-* Create a base RingCentral Widget Project
-* Add call history feature to App
-* Add ringout call feature to App
+[x] Create a base RingCentral Widget Project
+[x] Add call history feature to App
+[x] Add ringout call feature to App
+[ ] Add a new module
