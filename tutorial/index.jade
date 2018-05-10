@@ -155,3 +155,16 @@
         Congradulations! Now you have finished adding call feature to your app. Now it supports to call with RingCentral Desktop and RingOut mode. Change calling mode in Calling Setting on Setting Page.
 
         Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
+  .chapter(data-title='Add a new module')
+    .step(data-title='Use CLI to generate module scaffold', data-file='src/modules/LocalPresence/index.js')
+      :markdown
+        ## Use CLI to generate module scaffold
+
+        ```
+        $ rc-widgets g Module LocalPresence -d DetailedPresence
+        ```
+
+        It will create a module named LocalPresence with dependence DetailedPresence in `src/modules`.
+    .step(data-title='Subsciption calls', data-file='src/modules/LocalPresence/index.js')
+      :markdown
+        ## Check if there are calls changed
