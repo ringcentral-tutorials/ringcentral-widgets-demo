@@ -41,6 +41,12 @@ export default class LocalPresence extends RcModule {
         type: this.actionTypes.resetSuccess,
       });
     }
+    if (this.ready) {
+      if (this._lastCalls !== this._detailedPresence.calls) {
+        this._lastCalls = this._detailedPresence.calls;
+        console.log(this._lastCalls);
+      }
+    }
   }
 
   _shouldInit() {
