@@ -41,7 +41,7 @@ import DialerUI from 'ringcentral-widgets/modules/DialerUI';
 import OAuth from 'ringcentral-widgets/modules/ProxyFrameOAuth';
 import RouterInteraction from 'ringcentral-widgets/modules/RouterInteraction';
 
-
+import LocalPresence from '../LocalPresence';
 // user Dependency Injection with decorator to create a phone class
 // https://github.com/ringcentral/ringcentral-js-integration-commons/blob/master/docs/dependency-injection.md
 @ModuleFactory({
@@ -79,6 +79,7 @@ import RouterInteraction from 'ringcentral-widgets/modules/RouterInteraction';
     { provide: 'AccountExtension', useClass: AccountExtension },
     { provide: 'ExtensionPhoneNumber', useClass: ExtensionPhoneNumber },
     { provide: 'ForwardingNumber', useClass: ForwardingNumber },
+    { provide: 'LocalPresence', useClass: LocalPresence },
     {
       provide: 'EnvironmentOptions',
       useFactory: ({ sdkConfig }) => sdkConfig,

@@ -40,7 +40,7 @@ $ yarn start
 
 ### Build for production
 
-Update REDIRECT_URI and RINGCENTRAL_SERVER_URL with config in production
+Update `REDIRECT_URI` and `RINGCENTRAL_SERVER_URL` with config in production
 
 ```
 RINGCENTRAL_SERVER_URL=https://platform.ringcentral.com
