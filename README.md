@@ -1,4 +1,4 @@
-# Ringcentral Widgets Demo
+# RingCentral Widgets Demo
 
 A new RingCentral Widgets Based demo app. Get online tutorial about how to build this app in [here](https://embbnux.github.io/ringcentral-widgets-demo/).
 
