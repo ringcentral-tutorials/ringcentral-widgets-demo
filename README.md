@@ -55,7 +55,9 @@ Upload files in release folder to your web host.
 
 ## [Tutorials](https://embbnux.github.io/ringcentral-widgets-demo/)
 
-[x] Create a base RingCentral Widget Project
-[x] Add call history feature to App
-[x] Add ringout call feature to App
-[ ] Add a new module
+- [x] Create a base RingCentral Widget Project
+- [x] Add call history feature to App
+- [x] Add ringout call feature to App
+- [x] Add a new module
+- [ ] Use Adapter core to insert widget
+
