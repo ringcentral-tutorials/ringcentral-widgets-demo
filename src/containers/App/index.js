@@ -14,6 +14,13 @@ import CallHistoryPage from 'ringcentral-widgets/containers/CallHistoryPage';
 
 import AlertContainer from 'ringcentral-widgets/containers/AlertContainer';
 
+import ComposeTextPage from 'ringcentral-widgets/containers/ComposeTextPage';
+import MessagesPage from 'ringcentral-widgets/containers/MessagesPage';
+import ConversationPage from 'ringcentral-widgets/containers/ConversationPage';
+
+import ConferencePage from 'ringcentral-widgets/containers/ConferencePage';
+import ConferenceCommands from 'ringcentral-widgets/components/ConferenceCommands';
+
 import MainView from '../MainView';
 import AppView from '../AppView';
 
@@ -95,6 +102,40 @@ export default function App({
               <Route
                 path="/dialer"
                 component={DialerPage}
+              />
+              <Route
+                path="/composeText"
+                component={ComposeTextPage}
+              />
+              <Route
+                path="/conversations/:conversationId"
+                component={routerProps => (
+                  <ConversationPage
+                    params={routerProps.params}
+                    showContactDisplayPlaceholder={false}
+                    showGroupNumberName
+                  />
+                )}
+              />
+              <Route
+                path="/messages"
+                component={() => (
+                  <MessagesPage
+                    showContactDisplayPlaceholder={false}
+                    showGroupNumberName
+                  />
+                )} />
+              <Route
+                path="/conference/commands"
+                component={() => (
+                  <ConferenceCommands
+                    currentLocale={phone.locale.currentLocale}
+                    onBack={() => phone.routerInteraction.goBack()} />
+                )}
+              />
+              <Route
+                path="/conference"
+                component={ConferencePage}
               />
             </Route>
           </Route>

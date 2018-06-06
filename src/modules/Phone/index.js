@@ -41,6 +41,15 @@ import DialerUI from 'ringcentral-widgets/modules/DialerUI';
 import OAuth from 'ringcentral-widgets/modules/ProxyFrameOAuth';
 import RouterInteraction from 'ringcentral-widgets/modules/RouterInteraction';
 
+import Messages from 'ringcentral-integration/modules/Messages';
+import MessageStore from 'ringcentral-integration/modules/MessageStore';
+import Conversation from 'ringcentral-integration/modules/Conversation';
+import MessageSender from 'ringcentral-integration/modules/MessageSender';
+import ComposeText from 'ringcentral-integration/modules/ComposeText';
+import ContactSearch from 'ringcentral-integration/modules/ContactSearch';
+
+import Conference from 'ringcentral-integration/modules/Conference';
+
 import LocalPresence from '../LocalPresence';
 // user Dependency Injection with decorator to create a phone class
 // https://github.com/ringcentral/ringcentral-js-integration-commons/blob/master/docs/dependency-injection.md
@@ -80,6 +89,13 @@ import LocalPresence from '../LocalPresence';
     { provide: 'ExtensionPhoneNumber', useClass: ExtensionPhoneNumber },
     { provide: 'ForwardingNumber', useClass: ForwardingNumber },
     { provide: 'LocalPresence', useClass: LocalPresence },
+    { provide: 'MessageStore', useClass: MessageStore },
+    { provide: 'Messages', useClass: Messages },
+    { provide: 'Conversation', useClass: Conversation },
+    { provide: 'MessageSender', useClass: MessageSender },
+    { provide: 'ComposeText', useClass: ComposeText },
+    { provide: 'ContactSearch', useClass: ContactSearch },
+    { provide: 'Conference', useClass: Conference },
     {
       provide: 'EnvironmentOptions',
       useFactory: ({ sdkConfig }) => sdkConfig,
