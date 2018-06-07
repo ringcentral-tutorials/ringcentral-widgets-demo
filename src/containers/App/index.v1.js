@@ -23,7 +23,7 @@ import ConferenceCommands from 'ringcentral-widgets/components/ConferenceCommand
 
 import MainView from '../MainView';
 import AppView from '../AppView';
-import ThirdPartyConferenceInviteButton from '../../components/ThirdPartyConferenceInviteButton';
+
 
 export default function App({
   phone,
@@ -135,13 +135,7 @@ export default function App({
               />
               <Route
                 path="/conference"
-                component={
-                  () => (
-                    <ConferencePage
-                      additionalButtons={[ThirdPartyConferenceInviteButton]}
-                    />
-                  )
-                }
+                component={ConferencePage}
               />
             </Route>
           </Route>
