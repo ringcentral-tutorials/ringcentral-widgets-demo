@@ -86,21 +86,21 @@
 
          Before we start, you need to add `Read CallLog` and `Edit Presence` permissions to your [RingCentral app](https://developer.ringcentral.com).
 
-    .step(data-title='Add call history related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='25-28,68-71')
+    .step(data-title='Add call history related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='25-28,77-80')
       :markdown
         ## Update Phone module
 
         * Import call history related modules
         * Add call history related modules to dependences
 
-    .step(data-title='Add call history UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='12-13,79-90')
+    .step(data-title='Add call history UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='12-13,86-96')
       :markdown
         ## Update App container
 
         * Import `ActiveCallsPage` and `CallHistoryPage`
         * Add containers to routers
 
-    .step(data-title='Add call history and active calls tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='9-10,13-14,27-41')
+    .step(data-title='Add call history and active calls tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='8-9,12-13,32-46')
       :markdown
         ## Update tabs
 
@@ -129,20 +129,20 @@
 
         Before we start, you need to add `RingOut` permissions to your [RingCentral app](https://developer.ringcentral.com).
 
-    .step(data-title='Add call related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='30-39,72-81')
+    .step(data-title='Add call related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='30-39,81-90')
       :markdown
         ## Update Phone module
 
         * Import call related modules
         * Add call related modules to dependences
 
-    .step(data-title='Add call UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='7,9,91-98')
+    .step(data-title='Add call UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='7,9,98-105')
       :markdown
         ## Update App container
 
         * Import `CallingSettingsPage` and `DialerPage`
         * Add containers to routers
-    .step(data-title='Add dialer tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='17-18,21-26')
+    .step(data-title='Add dialer tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='16-17,26-31')
       :markdown
         ## Add dialer tab
 
@@ -153,6 +153,87 @@
         ## Play with Call feature
 
         Congradulations! Now you have finished adding call feature to your app. Now it supports to call with RingCentral Desktop and RingOut mode. Change calling mode in Calling Setting on Setting Page.
+
+        Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
+  .chapter(data-title='Add messages feature to App')
+    .step(data-title='Add messages feature to App', data-file='README.md')
+      :markdown
+         After adding calls feature, you must want to add messages feature to this app to send and receive message with RingCentral.
+
+         It includes 3 steps:
+
+         * Add messages related modules to Phone module
+         * Add messages UI container and router to App container
+         * Add messages tab to MainView
+
+         ### Add permissions
+
+         Before we start, you need to add `SMS`, `Internal Messages`, `Read Messages` and `Edit Messages` permissions to your [RingCentral app](https://developer.ringcentral.com).
+    .step(data-title='Add messages related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='44-49,92-97')
+      :markdown
+        ## Update Phone module
+
+        * Import messages history related modules
+        * Add message related modules to dependences
+
+    .step(data-title='Add messages UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='17-19,106-127')
+      :markdown
+        ## Update App container
+
+        * Import `ComposeTextPage`, `MessagesPage` and `ConversationPage`
+        * Add containers to routers
+
+    .step(data-title='Add messages tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='19-20,47-56')
+      :markdown
+        ## Update tabs
+
+        * Import tab icon
+        * Add `Messages` tab
+
+    .step(data-title='Play with messages feature', data-file='README.md')
+      :markdown
+        ## Play with messages feature
+
+        Congradulations! Now you have finished adding messages feature to your app.
+
+        Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
+  .chapter(data-title='Add conference feature to App')
+    .step(data-title='Add conference feature to App', data-file='README.md')
+      :markdown
+         In this chapter, we will learn how to add conference feature to our app.
+
+         It includes 3 steps:
+
+         * Add conference related modules to Phone module
+         * Add conference UI container and router to App container
+         * Add conference tab to MainView
+
+    .step(data-title='Add conference related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='51,98')
+      :markdown
+        ## Update Phone module
+
+        * Import conference history related modules
+        * Add conference related modules to dependences
+
+    .step(data-title='Add conference UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='21-22,128-139')
+      :markdown
+        Update App container in `src/containers/App/index.js`
+
+        * Import `ConferenceCommands` and `ConferencePage`
+        * Add containers to routers
+
+    .step(data-title='Add conference tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='22-23,57-65')
+      :markdown
+        ## Update tabs
+
+        * Import tab icon
+        * Add `Conference` tab
+
+    .step(data-title='Play with conference feature', data-file='README.md')
+      :markdown
+        ## Play with feature feature
+
+        Congradulations! Now you have finished adding messages feature to your app.
 
         Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
   .chapter(data-title='Add a new module')
