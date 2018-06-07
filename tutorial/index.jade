@@ -207,6 +207,7 @@
          * Add conference related modules to Phone module
          * Add conference UI container and router to App container
          * Add conference tab to MainView
+         * Add third party button on conference invite page
 
     .step(data-title='Add conference related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='51,98')
       :markdown
@@ -215,7 +216,7 @@
         * Import conference history related modules
         * Add conference related modules to dependences
 
-    .step(data-title='Add conference UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='21-22,128-139')
+    .step(data-title='Add conference UI container and router to App container', data-file='src/containers/App/index.v1.js' data-highlight='21-22,128-139')
       :markdown
         Update App container in `src/containers/App/index.js`
 
@@ -228,6 +229,17 @@
 
         * Import tab icon
         * Add `Conference` tab
+    .step(data-title='Add a third party button', data-file='src/components/ThirdPartyConferenceInviteButton/index.js')
+      :markdown
+        ## Create a Button component
+
+        Add your logics here to interact with third party platform.
+        In this tutorial, we use google calendar as third party platform.
+    .step(data-title='Add button to conference page', data-file='src/containers/App/index.js' data-highlight='26,136-145')
+      :markdown
+        ## Add button to conference page
+
+        Pass the button component to conference page in App container.
 
     .step(data-title='Play with conference feature', data-file='README.md')
       :markdown
