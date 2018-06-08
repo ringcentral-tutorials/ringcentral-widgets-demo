@@ -58,6 +58,7 @@ Upload files in release folder to your web host.
 - [x] Create a base RingCentral Widget Project
 - [x] Add call history feature to App
 - [x] Add ringout call feature to App
+- [x] Add messages feature module
+- [x] Add conference feature module
 - [x] Add a new module
 - [ ] Use Adapter core to insert widget
-
