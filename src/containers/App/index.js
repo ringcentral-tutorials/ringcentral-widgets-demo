@@ -15,7 +15,7 @@ import CallHistoryPage from 'ringcentral-widgets/containers/CallHistoryPage';
 import AlertContainer from 'ringcentral-widgets/containers/AlertContainer';
 
 import ComposeTextPage from 'ringcentral-widgets/containers/ComposeTextPage';
-import MessagesPage from 'ringcentral-widgets/containers/MessagesPage';
+import ConversationsPage from 'ringcentral-widgets/containers/ConversationsPage';
 import ConversationPage from 'ringcentral-widgets/containers/ConversationPage';
 
 import ConferencePage from 'ringcentral-widgets/containers/ConferencePage';
@@ -120,7 +120,7 @@ export default function App({
               <Route
                 path="/messages"
                 component={() => (
-                  <MessagesPage
+                  <ConversationsPage
                     showContactDisplayPlaceholder={false}
                     showGroupNumberName
                   />

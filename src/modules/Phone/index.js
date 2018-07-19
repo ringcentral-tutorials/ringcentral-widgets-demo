@@ -41,9 +41,9 @@ import DialerUI from 'ringcentral-widgets/modules/DialerUI';
 import OAuth from 'ringcentral-widgets/modules/ProxyFrameOAuth';
 import RouterInteraction from 'ringcentral-widgets/modules/RouterInteraction';
 
-import Messages from 'ringcentral-integration/modules/Messages';
+
 import MessageStore from 'ringcentral-integration/modules/MessageStore';
-import Conversation from 'ringcentral-integration/modules/Conversation';
+import Conversations from 'ringcentral-integration/modules/Conversations';
 import MessageSender from 'ringcentral-integration/modules/MessageSender';
 import ComposeText from 'ringcentral-integration/modules/ComposeText';
 import ContactSearch from 'ringcentral-integration/modules/ContactSearch';
@@ -90,8 +90,8 @@ import LocalPresence from '../LocalPresence';
     { provide: 'ForwardingNumber', useClass: ForwardingNumber },
     { provide: 'LocalPresence', useClass: LocalPresence },
     { provide: 'MessageStore', useClass: MessageStore },
-    { provide: 'Messages', useClass: Messages },
-    { provide: 'Conversation', useClass: Conversation },
+
+    { provide: 'Conversations', useClass: Conversations },
     { provide: 'MessageSender', useClass: MessageSender },
     { provide: 'ComposeText', useClass: ComposeText },
     { provide: 'ContactSearch', useClass: ContactSearch },
