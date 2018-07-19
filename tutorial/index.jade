@@ -86,14 +86,14 @@
 
          Before we start, you need to add `Read CallLog` and `Edit Presence` permissions to your [RingCentral app](https://developer.ringcentral.com).
 
-    .step(data-title='Add call history related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='25-28,77-80')
+    .step(data-title='Add call history related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='25-28,85-88')
       :markdown
         ## Update Phone module
 
         * Import call history related modules
         * Add call history related modules to dependences
 
-    .step(data-title='Add call history UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='12-13,86-96')
+    .step(data-title='Add call history UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='12-13,117-128')
       :markdown
         ## Update App container
 
@@ -115,7 +115,7 @@
 
         Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
   .chapter(data-title='Add ringout call feature to App')
-    .step(data-title='Add call history feature to App', data-file='README.md')
+    .step(data-title='Add ringout call feature to App', data-file='README.md')
       :markdown
         In this section, we will add RingOut Call feature to your ringcentral widgets app.
 
@@ -129,14 +129,14 @@
 
         Before we start, you need to add `RingOut` permissions to your [RingCentral app](https://developer.ringcentral.com).
 
-    .step(data-title='Add call related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='30-39,81-90')
+    .step(data-title='Add call related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='30-39,89-98')
       :markdown
         ## Update Phone module
 
         * Import call related modules
         * Add call related modules to dependences
 
-    .step(data-title='Add call UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='7,9,98-105')
+    .step(data-title='Add call UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='7,9,129-136')
       :markdown
         ## Update App container
 
@@ -155,6 +155,56 @@
         Congradulations! Now you have finished adding call feature to your app. Now it supports to call with RingCentral Desktop and RingOut mode. Change calling mode in Calling Setting on Setting Page.
 
         Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
+  .chapter(data-title='Add web phone feature to App')
+    .step(data-title='Add web phone feature to App', data-file='README.md')
+      :markdown
+        In this section, we will add Web Phone feature to your ringcentral widgets app.
+
+        It includes 5 steps:
+
+        * Add web phone related modules to Phone module
+        * Add web phone related container and router to App container
+        * Add web phone hook into Phone module
+        * Add contacts matcher into Phone module
+        * Add WebphoneBadge to AppView container
+
+        ### Add permissions
+
+        Before we start, you need to add `VoIP Calling` permissions to your [RingCentral app](https://developer.ringcentral.com).
+    .step(data-title='Add web phone related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='53-59,122-134')
+      :markdown
+        ## Update Phone module
+
+        * Import web phone related modules
+        * Add web phone related modules to dependences
+    .step(data-title='Add web phone UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='24-27,47-68,113-116,177-196')
+      :markdown
+        ## Update App container
+
+        * Import `IncomingCallPage`, `CallCtrlPage`, `CallBadgeContainer`, and `AudioSettingsPage` containers
+        * Add containers to routers
+    .step(data-title='Add web phone hooks to Phone module', data-file='src/modules/Phone/index.js' data-highlight='142-143, 148-175')
+      :markdown
+        ## Add webphne hooks
+
+        * Add webphone hook to drive route
+    .step(data-title='Add contacts matcher to Phone module', data-file='src/modules/Phone/index.js' data-highlight='144, 177-201')
+      :markdown
+        ## Add contact matcher
+
+        * Match call phone number with contact name
+    .step(data-title='Add WebphoneBadge to AppView container', data-file='src/containers/AppView/index.js' data-highlight='8, 20-33, 93-104, 122-136')
+      :markdown
+        ## Add WebphoneBadge
+
+        * show WebphoneBadge when wehphone gets errors
+    .step(data-title='Play with Web phone feature', data-file='README.md')
+      :markdown
+        ## Play with Web phone feature
+
+        Congradulations! Now you have finished adding web phone feature to your app. Now it supports to call with chrome in browser mode. Change calling mode in Calling Setting on Setting Page.
+
+        Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
   .chapter(data-title='Add messages feature to App')
     .step(data-title='Add messages feature to App', data-file='README.md')
       :markdown
@@ -169,14 +219,14 @@
          ### Add permissions
 
          Before we start, you need to add `SMS`, `Internal Messages`, `Read Messages` and `Edit Messages` permissions to your [RingCentral app](https://developer.ringcentral.com).
-    .step(data-title='Add messages related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='44-49,92-97')
+    .step(data-title='Add messages related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='44-49,100-105')
       :markdown
         ## Update Phone module
 
         * Import messages history related modules
         * Add message related modules to dependences
 
-    .step(data-title='Add messages UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='17-19,106-127')
+    .step(data-title='Add messages UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='17-19,137-158')
       :markdown
         ## Update App container
 
@@ -209,7 +259,7 @@
          * Add conference tab to MainView
          * Add third party button on conference invite page
 
-    .step(data-title='Add conference related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='51,98')
+    .step(data-title='Add conference related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='51,106')
       :markdown
         ## Update Phone module
 
@@ -235,7 +285,7 @@
 
         Add your logics here to interact with third party platform.
         In this tutorial, we use google calendar as third party platform.
-    .step(data-title='Add button to conference page', data-file='src/containers/App/index.js' data-highlight='26,136-145')
+    .step(data-title='Add button to conference page', data-file='src/containers/App/index.js' data-highlight='31,167-176')
       :markdown
         ## Add button to conference page
 
