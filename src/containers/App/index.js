@@ -21,6 +21,11 @@ import ConversationPage from 'ringcentral-widgets/containers/ConversationPage';
 import ConferencePage from 'ringcentral-widgets/containers/ConferencePage';
 import ConferenceCommands from 'ringcentral-widgets/components/ConferenceCommands';
 
+import IncomingCallPage from 'ringcentral-widgets/containers/IncomingCallPage';
+import CallCtrlPage from 'ringcentral-widgets/containers/CallCtrlPage';
+import CallBadgeContainer from 'ringcentral-widgets/containers/CallBadgeContainer';
+import AudioSettingsPage from 'ringcentral-widgets/containers/AudioSettingsPage';
+
 import MainView from '../MainView';
 import AppView from '../AppView';
 import ThirdPartyConferenceInviteButton from '../../components/ThirdPartyConferenceInviteButton';
@@ -39,6 +44,28 @@ export default function App({
                 hostingUrl={hostingUrl}
               >
                 {routerProps.children}
+                <CallBadgeContainer
+                  defaultOffsetX={0}
+                  defaultOffsetY={45}
+                  hidden={routerProps.location.pathname === '/calls/active'}
+                  goToCallCtrl={() => {
+                    phone.routerInteraction.push('/calls/active');
+                  }}
+                />
+                <IncomingCallPage
+                  showContactDisplayPlaceholder={false}
+                  getAvatarUrl={
+                    async (contact) => {
+                      const avatarUrl = await phone.contacts.getProfileImage(contact);
+                      return avatarUrl;
+                    }
+                  }
+                >
+                  <AlertContainer
+                    callingSettingsUrl="/settings/calling"
+                    regionSettingsUrl="/settings/region"
+                  />
+                </IncomingCallPage>
               </AppView>
             )} >
             <Route
@@ -70,7 +97,7 @@ export default function App({
                     params={routerProps.location.query}
                     regionSettingsUrl="/settings/region"
                     callingSettingsUrl="/settings/calling"
-                    showAudio={false}
+                    showAudio
                     showFeedback={false}
                   />
                 )}
@@ -82,6 +109,10 @@ export default function App({
               <Route
                 path="/settings/calling"
                 component={CallingSettingsPage}
+              />
+              <Route
+                path="/settings/audio"
+                component={AudioSettingsPage}
               />
               <Route
                 path="/calls"
@@ -142,6 +173,26 @@ export default function App({
                     />
                   )
                 }
+              />
+              <Route
+                path="/calls/active"
+                component={() => (
+                  <CallCtrlPage
+                    showContactDisplayPlaceholder={false}
+                    onAdd={() => {
+                      phone.routerInteraction.push('/dialer');
+                    }}
+                    onBackButtonClick={() => {
+                      phone.routerInteraction.push('/calls');
+                    }}
+                    getAvatarUrl={
+                      async (contact) => {
+                        const avatarUrl = await phone.contacts.getProfileImage(contact);
+                        return avatarUrl;
+                      }
+                    }
+                  />
+                )}
               />
             </Route>
           </Route>

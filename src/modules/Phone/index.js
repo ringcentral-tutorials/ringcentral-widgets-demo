@@ -50,6 +50,14 @@ import ContactSearch from 'ringcentral-integration/modules/ContactSearch';
 
 import Conference from 'ringcentral-integration/modules/Conference';
 
+import Webphone from 'ringcentral-integration/modules/Webphone';
+import ExtensionDevice from 'ringcentral-integration/modules/ExtensionDevice';
+import AddressBook from 'ringcentral-integration/modules/AddressBook';
+import AccountPhoneNumber from 'ringcentral-integration/modules/AccountPhoneNumber';
+import AccountContacts from 'ringcentral-integration/modules/AccountContacts';
+import ContactMatcher from 'ringcentral-integration/modules/ContactMatcher';
+import Contacts from 'ringcentral-integration/modules/Contacts';
+
 import LocalPresence from '../LocalPresence';
 // user Dependency Injection with decorator to create a phone class
 // https://github.com/ringcentral/ringcentral-js-integration-commons/blob/master/docs/dependency-injection.md
@@ -111,6 +119,19 @@ import LocalPresence from '../LocalPresence';
         { dep: 'SdkConfig', useParam: true, },
       ],
     },
+    { provide: 'Webphone', useClass: Webphone },
+    { provide: 'ExtensionDevice', useClass: ExtensionDevice },
+    { provide: 'AccountContacts', useClass: AccountContacts },
+    { provide: 'AddressBook', useClass: AddressBook },
+    { provide: 'AccountPhoneNumber', useClass: AccountPhoneNumber },
+    { provide: 'Contacts', useClass: Contacts },
+    { provide: 'ContactMatcher', useClass: ContactMatcher },
+    {
+      provide: 'ContactSources',
+      useFactory: ({ addressBook, accountContacts }) =>
+        [addressBook, accountContacts],
+      deps: ['AccountContacts', 'AddressBook']
+    },
   ]
 })
 export default class BasePhone extends RcModule {
@@ -118,8 +139,66 @@ export default class BasePhone extends RcModule {
     super(options);
     const {
       appConfig,
+      webphone,
+      routerInteraction,
+      contactMatcher,
     } = options;
     this._appConfig = appConfig;
+
+    webphone._onCallEndFunc = (session) => {
+      if (routerInteraction.currentPath !== '/calls/active') {
+        return;
+      }
+      const currentSession = webphone.activeSession;
+      if (currentSession && session.id !== currentSession.id) {
+        return;
+      }
+      routerInteraction.goBack();
+    };
+    webphone._onCallStartFunc = () => {
+      if (routerInteraction.currentPath === '/calls/active') {
+        return;
+      }
+      routerInteraction.push('/calls/active');
+    };
+    webphone._onCallRingFunc = () => {
+      if (
+        webphone.ringSessions.length > 1
+      ) {
+        if (routerInteraction.currentPath !== '/calls') {
+          routerInteraction.push('/calls');
+        }
+        webphone.ringSessions.forEach((session) => {
+          webphone.toggleMinimized(session.id);
+        });
+      }
+    };
+
+    // ContactMatcher configuration
+    contactMatcher.addSearchProvider({
+      name: 'personal',
+      searchFn: ({ queries }) => {
+        const result = {};
+        const phoneNumbers = queries;
+        phoneNumbers.forEach((phoneNumber) => {
+          result[phoneNumber] = this.addressBook.matchPhoneNumber(phoneNumber);
+        });
+        return result;
+      },
+      readyCheckFn: () => this.addressBook.ready,
+    });
+    contactMatcher.addSearchProvider({
+      name: 'company',
+      searchFn: ({ queries }) => {
+        const result = {};
+        const phoneNumbers = queries;
+        phoneNumbers.forEach((phoneNumber) => {
+          result[phoneNumber] = this.accountContacts.matchPhoneNumber(phoneNumber);
+        });
+        return result;
+      },
+      readyCheckFn: () => this.accountContacts.ready,
+    });
   }
 
   initialize() {
