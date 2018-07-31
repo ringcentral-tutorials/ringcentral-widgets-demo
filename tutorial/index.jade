@@ -308,6 +308,31 @@
         ```
 
         It will create a module named LocalPresence with dependence DetailedPresence in `src/modules`.
-    .step(data-title='Subsciption calls', data-file='src/modules/LocalPresence/index.js' data-highlight='44-49')
+    .step(data-title='Subsciption calls', data-file='src/modules/LocalPresence/index.js' data-highlight='62-67')
       :markdown
         Check if there are calls changed on state changed.
+    .step(data-title='Save data to storage - actionTypes', data-file='src/modules/LocalPresence/actionTypes.js')
+      :markdown
+        ## Storage - ActionTypes
+
+        We save data into storage by a data mapping with redux.
+
+        Before we create a reducer, let's add some actionTypes.
+    .step(data-title='Save data to storage - Reducer', data-file='src/modules/LocalPresence/getReducer.js', data-highlight='4-24')
+      :markdown
+        ## Storage - Reducer
+
+        Add two reducer
+    .step(data-title='Save data to storage - Register', data-file='src/modules/LocalPresence/index.js', data-highlight='5-6, 12-13, 20-21, 30-31, 38-45, 86-98, 104-110')
+      :markdown
+        ## Storage - Register
+
+        * Inject `GlobalStorage` and `Storage` module. `GlobalStorage` is used for global storage. It's data will not be cleaned still local storage cleaned. `Storage` is used for personal data. Data will be cleaned after user logout.
+
+        * Register reducer into storage module
+
+        * Save data into storage by dispatch
+
+        * Get data by storage key
+
+        You can set data by `phone.localPresence.updateCustomizeData(data)` in chrome console. And read day by `phone.localPresence.customizeData`.
