@@ -57,7 +57,7 @@ import AccountPhoneNumber from 'ringcentral-integration/modules/AccountPhoneNumb
 import AccountContacts from 'ringcentral-integration/modules/AccountContacts';
 import ContactMatcher from 'ringcentral-integration/modules/ContactMatcher';
 import Contacts from 'ringcentral-integration/modules/Contacts';
-
+import LocalForageStorage from 'ringcentral-integration/lib/LocalForageStorage';
 import LocalPresence from '../LocalPresence';
 // user Dependency Injection with decorator to create a phone class
 // https://github.com/ringcentral/ringcentral-js-integration-commons/blob/master/docs/dependency-injection.md
