@@ -59,6 +59,8 @@ import ContactMatcher from 'ringcentral-integration/modules/ContactMatcher';
 import Contacts from 'ringcentral-integration/modules/Contacts';
 import LocalForageStorage from 'ringcentral-integration/lib/LocalForageStorage';
 import LocalPresence from '../LocalPresence';
+import FreshDeskAdapter from '../FreshDeskAdapter';
+
 // user Dependency Injection with decorator to create a phone class
 // https://github.com/ringcentral/ringcentral-js-integration-commons/blob/master/docs/dependency-injection.md
 @ModuleFactory({
@@ -132,6 +134,15 @@ import LocalPresence from '../LocalPresence';
         [addressBook, accountContacts],
       deps: ['AccountContacts', 'AddressBook']
     },
+    {
+      provide: 'StorageOptions',
+      useValue: {
+        StorageProvider: LocalForageStorage, // IndexedDB
+        disableAllowInactiveTabsWrite: true,
+      },
+      spread: true
+    },
+    { provide: 'FreshDeskAdapter', useClass: FreshDeskAdapter },
   ]
 })
 export default class BasePhone extends RcModule {
@@ -210,6 +221,13 @@ export default class BasePhone extends RcModule {
         ) {
           this.routerInteraction.push('/');
         } else if (
+          this.auth.loggedIn &&
+          this.freshDeskAdapter &&
+          !this.freshDeskAdapter.apiKey &&
+          this.routerInteraction.currentPath !== '/freshDeskSetting'
+        ) {
+          this.routerInteraction.push('/freshDeskSetting');
+        } else if (
           this.routerInteraction.currentPath === '/' &&
           this.auth.loggedIn
         ) {
@@ -218,7 +236,7 @@ export default class BasePhone extends RcModule {
             return;
           }
           this.routerInteraction.push('/settings');
-        }
+        } 
       }
     });
   }

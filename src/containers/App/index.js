@@ -29,6 +29,7 @@ import AudioSettingsPage from 'ringcentral-widgets/containers/AudioSettingsPage'
 import MainView from '../MainView';
 import AppView from '../AppView';
 import ThirdPartyConferenceInviteButton from '../../components/ThirdPartyConferenceInviteButton';
+import FreshDeskSettingPage from '../FreshDeskSettingPage';
 
 export default function App({
   phone,
@@ -193,6 +194,10 @@ export default function App({
                     }
                   />
                 )}
+              />
+              <Route
+                path="/freshDeskSetting"
+                component={FreshDeskSettingPage}
               />
             </Route>
           </Route>
