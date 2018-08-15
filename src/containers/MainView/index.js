@@ -72,6 +72,15 @@ const TABS = [
       currentPath.substr(0, 9) === '/settings'
     ),
   },
+  {
+    icon: SettingsIcon,
+    activeIcon: SettingsHoverIcon,
+    label: 'FreshDesk Settings',
+    path: '/freshDeskSetting',
+    isActive: currentPath => (
+      currentPath.substr(0, 9) === '/freshDeskSetting'
+    ),
+  }
 ];
 
 function mapToProps(_, {

@@ -11,6 +11,7 @@ function mapToProps(_, {
 }) {
   return {
     apiKey: freshDeskAdapter.apiKey,
+    baseUri: freshDeskAdapter.baseUri,
   };
 }
 
@@ -21,8 +22,8 @@ function mapToFunctions(_, {
   }
 }) {
   return {
-    onSaveApiKey(key) {
-      freshDeskAdapter.updateAPIKey(key);
+    onSaveSettings(key, baseUri) {
+      freshDeskAdapter.updateSettings(key, baseUri);
       routerInteraction.push('/dialer');
     }
   };

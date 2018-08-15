@@ -13,6 +13,7 @@ export default class FreshDeskSettingPanel extends Component {
     super(props);
     this.state = {
       apiKey: props.apiKey,
+      baseUri: props.baseUri,
     };
 
     this._updateApiKey = (e) => {
@@ -22,14 +23,24 @@ export default class FreshDeskSettingPanel extends Component {
       });
     };
 
+    this._updateBaseUri = (e) => {
+      const baseUri = e.target.value;
+      this.setState({
+        baseUri
+      });
+    };
+
     this._onSave = () => {
-      this.props.onSaveApiKey(this.state.apiKey);
+      this.props.onSaveSettings(this.state.apiKey, this.state.baseUri);
     };
   }
 
   render() {
     return (
       <Panel className={styles.content}>
+        <InputField label="FreshDesk Base Uri">
+          <TextInput value={this.state.baseUri} onChange={this._updateBaseUri} />
+        </InputField>
         <InputField label="FreshDesk API key">
           <TextInput value={this.state.apiKey} onChange={this._updateApiKey} />
         </InputField>
@@ -45,7 +56,7 @@ export default class FreshDeskSettingPanel extends Component {
 
 FreshDeskSettingPanel.propTypes = {
   apiKey: PropTypes.string,
-  onSaveApiKey: PropTypes.func.isRequired,
+  onSaveSettings: PropTypes.func.isRequired,
 };
 
 FreshDeskSettingPanel.defaultProps = {

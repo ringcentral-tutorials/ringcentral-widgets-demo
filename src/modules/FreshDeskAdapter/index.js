@@ -2,7 +2,7 @@ import RcModule from 'ringcentral-integration/lib/RcModule';
 import { Module } from 'ringcentral-integration/lib/di';
 
 
-import getReducer, { getAPIKeyReducer } from './getReducer';
+import getReducer, { getAPIKeyReducer, getBaseUriReducer } from './getReducer';
 import actionTypes from './actionTypes';
 import * as freshDeskClient from './freshDeskClient';
 
@@ -29,12 +29,18 @@ export default class FreshDeskAdapter extends RcModule {
     this._reducer = getReducer(this.actionTypes);
 
     this._globalStorageAPIKey = 'freshDeskAdapterAPIKey';
+    this._globalStorageBaseURI = 'freshDeskAdapterBaseUri';
 
     // register redux into global storage module
     // global storage module will map redux data into localstorage
     this._globalStorage.registerReducer({
       key: this._globalStorageAPIKey,
       reducer: getAPIKeyReducer(this.actionTypes),
+    });
+
+    this._globalStorage.registerReducer({
+      key: this._globalStorageBaseURI,
+      reducer: getBaseUriReducer(this.actionTypes),
     });
 
     this._lastSubscriptionMessage = null;
@@ -123,9 +129,15 @@ export default class FreshDeskAdapter extends RcModule {
         answeredTime: Date.now()
       };
       this._pendingTickets[call.sessionId] = answeredCall;
-      const ticket = await freshDeskClient.createTicket(this.apiKey, answeredCall);
-      this._pendingTickets[call.sessionId].ticketId = ticket.id;
-      // open ticket window in here
+      try {
+        const ticket = await freshDeskClient.createTicket(this.apiKey, this.baseUri, answeredCall);
+        this._pendingTickets[call.sessionId].ticketId = ticket.id;
+        // open ticket window in here
+      } catch (e) {
+        if (e.status === 401) {
+          this.updateAPIKey(null);
+        }
+      }
     }
     // update ticket on Call Ended
     if (call.telephonyStatus === 'NoCall' && this._pendingTickets[call.sessionId]) {
@@ -134,16 +146,23 @@ export default class FreshDeskAdapter extends RcModule {
         endedTime: Date.now()
       };
       const pendingCall = this._pendingTickets[call.sessionId];
-      await freshDeskClient.updateTicket(this.apiKey, pendingCall.ticketId, endedCall);
+      try {
+        await freshDeskClient.updateTicket(this.apiKey, this.baseUri, pendingCall.ticketId, endedCall);
+      } catch (e) {
+        if (e.status === 401) {
+          this.updateAPIKey(null);
+        }
+      }
       delete this._pendingTickets[call.sessionId];
     }
   }
 
   // save api key to redux store, global storage module will map it into localstorage
-  updateAPIKey(key) {
+  updateSettings(key, baseUri) {
     this.store.dispatch({
-      type: this.actionTypes.updateAPIKey,
+      type: this.actionTypes.updateSettings,
       key,
+      baseUri,
     });
   }
 
@@ -153,5 +172,9 @@ export default class FreshDeskAdapter extends RcModule {
 
   get apiKey() {
     return this._globalStorage.getItem(this._globalStorageAPIKey);
+  }
+
+  get baseUri() {
+    return this._globalStorage.getItem(this._globalStorageBaseURI);
   }
 }
