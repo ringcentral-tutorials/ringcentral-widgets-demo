@@ -21,7 +21,7 @@ import RegionSettings from 'ringcentral-integration/modules/RegionSettings';
 import RateLimiter from 'ringcentral-integration/modules/RateLimiter';
 import Subscription from 'ringcentral-integration/modules/Subscription';
 import Storage from 'ringcentral-integration/modules/Storage';
-
+import TabManager from 'ringcentral-integration/modules/TabManager';
 import CallLog from 'ringcentral-integration/modules/CallLog';
 import CallMonitor from 'ringcentral-integration/modules/CallMonitor';
 import CallHistory from 'ringcentral-integration/modules/CallHistory';
@@ -68,6 +68,7 @@ import Adapter from '../Adapter';
     { provide: 'Alert', useClass: Alert },
     { provide: 'Brand', useClass: Brand },
     { provide: 'Locale', useClass: Locale },
+    { provide: 'TabManager', useClass: TabManager },
     { provide: 'GlobalStorage', useClass: GlobalStorage },
     { provide: 'ConnectivityMonitor', useClass: ConnectivityMonitor },
     { provide: 'Auth', useClass: Auth },

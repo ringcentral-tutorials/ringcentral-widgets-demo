@@ -1,4 +1,4 @@
-export function createTicket(key, call) {
+export function createTicket(key, baseUri, call) {
   console.log('create ticket:', call);
   // fake return ticket object
   return {
@@ -6,7 +6,7 @@ export function createTicket(key, call) {
   };
 }
 
-export function updateTicket(key, ticketId, call) {
+export function updateTicket(key, baseUri, ticketId, call) {
   console.log('update ticket:', call);
   // fake return ticket object
   return {

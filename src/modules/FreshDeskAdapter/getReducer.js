@@ -23,6 +23,40 @@ export function getBaseUriReducer(types) {
   };
 }
 
+export function getPendingTicketsReducer(types) {
+  return (state = {}, { type, sessionId, ticket }) => {
+    let newState;
+    let oldTicket;
+    switch (type) {
+      case types.createTicket:
+        return {
+          ...state,
+          [sessionId]: ticket
+        };
+      case types.createTicketSuccess:
+        oldTicket = state[sessionId] || {};
+        return {
+          ...state,
+          [sessionId]: {
+            ...oldTicket,
+            ...ticket,
+          }
+        };
+      case types.createTicketError:
+      case types.updateTicketSuccess:
+        newState = {
+          ...state,
+        };
+        delete newState[sessionId];
+        return newState;
+      case types.resetSuccess:
+        return {};
+      default:
+        return state;
+    }
+  };
+}
+
 export default function getReducer(types) {
   return combineReducers({
     status: getModuleStatusReducer(types),

@@ -5332,9 +5332,9 @@ react-component-managers@^3.0.2:
   dependencies:
     prop-types "^15.5.9"
 
-react-dom@^16.0.0:
-  version "16.2.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
+react-dom@^16.4.2:
+  version "16.4.2"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.4.2.tgz#4afed569689f2c561d2b8da0b819669c38a0bda4"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -5447,9 +5447,9 @@ react-widgets@^4.1.1:
     uncontrollable "^4.0.0"
     warning "^2.0.0"
 
-react@^16.0.0:
-  version "16.2.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.2.0.tgz#a31bd2dab89bff65d42134fa187f24d054c273ba"
+react@^16.4.2:
+  version "16.4.2"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.4.2.tgz#2cd90154e3a9d9dd8da2991149fdca3c260e129f"
   dependencies:
     fbjs "^0.8.16"
     loose-envify "^1.1.0"
@@ -5788,9 +5788,9 @@ ringcentral-client@^1.0.0-beta.1:
     form-data "^2.1.2"
     isomorphic-fetch "^2.2.1"
 
-ringcentral-integration@^0.8.3:
-  version "0.8.3"
-  resolved "https://registry.yarnpkg.com/ringcentral-integration/-/ringcentral-integration-0.8.3.tgz#69a6c02dd6cb5bb88db40aa8db9af79962d0f289"
+ringcentral-integration@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/ringcentral-integration/-/ringcentral-integration-0.9.1.tgz#5327189a4f78c5d648c901ad2fef5d66e66fa711"
   dependencies:
     file-loader "^1.1.11"
     json-mask "^0.3.8"
@@ -5811,9 +5811,9 @@ ringcentral-web-phone@^0.4.5:
   dependencies:
     sip.js "^0.7.8"
 
-ringcentral-widgets@^0.8.3:
-  version "0.8.3"
-  resolved "https://registry.yarnpkg.com/ringcentral-widgets/-/ringcentral-widgets-0.8.3.tgz#326f4f02aeb9362e502c419f458e6338fadc78ea"
+ringcentral-widgets@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/ringcentral-widgets/-/ringcentral-widgets-0.9.1.tgz#d73c72d57b2da492881ef36d3d9de4b5781fb137"
   dependencies:
     animate.css "^3.5.2"
     classnames "^2.2.5"
