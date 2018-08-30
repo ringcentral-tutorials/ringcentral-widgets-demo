@@ -29,7 +29,7 @@ $ yarn
 RINGCENTRAL_CLIENT_ID=your ringcentral app client id
 RINGCENTRAL_CLIENT_SECRET=your ringcentral app client secret
 RINGCENTRAL_SERVER_URL=ringcentral api server, eg: https://platform.devtest.ringcentral.com
-REDIRECT_URI=your redirect uri, eg: http://localhost:8080/redirect.html
+REDIRECT_URI=your redirect uri, eg: https://localhost:8080/redirect.html
 ```
 
 ### Start Development Server
@@ -48,7 +48,7 @@ REDIRECT_URI=your_host_address/redirect.html
 ```
 
 ```bash
-$ yarn build
+$ HOSTING_URL=your_web_host_uri yarn build
 ```
 
 Upload files in release folder to your web host.

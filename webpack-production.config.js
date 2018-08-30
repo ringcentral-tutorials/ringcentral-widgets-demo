@@ -23,6 +23,7 @@ const config = {
     index: './src/index.js',
     proxy: './src/proxy.js',
     redirect: './src/redirect.js',
+    adapter: './src/adapter.js',
   },
   output: {
     path: buildPath,

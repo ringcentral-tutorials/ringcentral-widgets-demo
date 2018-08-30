@@ -1,0 +1,31 @@
+{
+  "name": "RingCentral FreshDesk Integration",
+  "description": "RingCentral FreshDesk Integration",
+  "version": "0.0.1",
+  "permissions": [
+    "http://*/",
+    "https://*/",
+    "storage",
+    "activeTab",
+    "tabs",
+    "background",
+    "tabCapture",
+    "unlimitedStorage",
+    "https://*.freshdesk.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://freshdesk.com/", "https://*.freshdesk.com/*"],
+      "js": [
+        "./content.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "browser_action": {},
+  "content_security_policy": "script-src 'self' https://localhost:8080; object-src 'self'",
+  "manifest_version": 2
+}

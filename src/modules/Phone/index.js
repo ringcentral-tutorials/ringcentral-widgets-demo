@@ -60,7 +60,7 @@ import Contacts from 'ringcentral-integration/modules/Contacts';
 import LocalForageStorage from 'ringcentral-integration/lib/LocalForageStorage';
 import LocalPresence from '../LocalPresence';
 import FreshDeskAdapter from '../FreshDeskAdapter';
-
+import Adapter from '../Adapter';
 // user Dependency Injection with decorator to create a phone class
 // https://github.com/ringcentral/ringcentral-js-integration-commons/blob/master/docs/dependency-injection.md
 @ModuleFactory({
@@ -143,6 +143,8 @@ import FreshDeskAdapter from '../FreshDeskAdapter';
       spread: true
     },
     { provide: 'FreshDeskAdapter', useClass: FreshDeskAdapter },
+    { provide: 'Presence', useExisting: 'DetailedPresence' },
+    { provide: 'Adapter', useClass: Adapter },
   ]
 })
 export default class BasePhone extends RcModule {

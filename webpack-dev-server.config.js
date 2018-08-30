@@ -22,12 +22,14 @@ const config = {
     index: './src/index.js',
     proxy: './src/proxy.js',
     redirect: './src/redirect.js',
+    adapter: './src/adapter.js',
   },
   devServer: {
     contentBase: buildPath,
     hot: true,
     inline: true,
     port: 8080,
+    https: true,
   },
   devtool: 'eval-source-map',
   output: {
@@ -42,7 +44,7 @@ const config = {
         NODE_ENV: JSON.stringify('development'),
         API_CONFIG: JSON.stringify(apiConfig),
         APP_VERSION: JSON.stringify(version),
-        HOSTING_URL: JSON.stringify('http://localhost:8080'),
+        HOSTING_URL: JSON.stringify('https://localhost:8080'),
       },
     }),
   ],

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import withPhone from 'ringcentral-widgets/lib/withPhone';
-
+import callingOptions from 'ringcentral-integration/modules/CallingSettings/callingOptions';
 import TabNavigationView from 'ringcentral-widgets/components/TabNavigationView';
 
 import CallsIcon from 'ringcentral-widgets/assets/images/Calls.svg';
@@ -86,10 +86,15 @@ const TABS = [
 function mapToProps(_, {
   phone: {
     routerInteraction,
+    callingSettings,
   },
 }) {
+  let tabs = TABS;
+  if (!callingSettings.ready || callingSettings.callWith === callingOptions.browser) {
+    tabs = tabs.filter(t => t.path !== '/calls');
+  }
   return {
-    tabs: TABS,
+    tabs,
     currentPath: routerInteraction.currentPath,
   };
 }
