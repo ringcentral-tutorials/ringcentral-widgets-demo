@@ -5,11 +5,9 @@ import withPhone from 'ringcentral-widgets/lib/withPhone';
 import callingOptions from 'ringcentral-integration/modules/CallingSettings/callingOptions';
 import TabNavigationView from 'ringcentral-widgets/components/TabNavigationView';
 
-import CallsIcon from 'ringcentral-widgets/assets/images/Calls.svg';
 import HistoryIcon from 'ringcentral-widgets/assets/images/CallHistory.svg';
 import SettingsIcon from 'ringcentral-widgets/assets/images/Settings.svg';
 
-import CallsHoverIcon from 'ringcentral-widgets/assets/images/CallsHover.svg';
 import HistoryHoverIcon from 'ringcentral-widgets/assets/images/CallHistoryHover.svg';
 import SettingsHoverIcon from 'ringcentral-widgets/assets/images/SettingsHover.svg';
 
@@ -28,15 +26,6 @@ const TABS = [
     activeIcon: DialPadHoverIcon,
     label: 'Dial Pad',
     path: '/dialer',
-  },
-  {
-    icon: CallsIcon,
-    activeIcon: CallsHoverIcon,
-    label: 'Calls',
-    path: '/calls',
-    isActive: currentPath => (
-      currentPath === '/calls' || currentPath === '/calls/active'
-    ),
   },
   {
     icon: HistoryIcon,
