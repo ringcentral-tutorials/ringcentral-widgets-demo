@@ -11,6 +11,7 @@ import SettingsPage from 'ringcentral-widgets/containers/SettingsPage';
 import WelcomePage from 'ringcentral-widgets/containers/WelcomePage';
 import ActiveCallsPage from 'ringcentral-widgets/containers/ActiveCallsPage';
 import CallHistoryPage from 'ringcentral-widgets/containers/CallHistoryPage';
+import DialerAndCallsTabContainer from 'ringcentral-widgets/containers/DialerAndCallsTabContainer';
 
 import AlertContainer from 'ringcentral-widgets/containers/AlertContainer';
 
@@ -23,6 +24,7 @@ import ConferenceCommands from 'ringcentral-widgets/components/ConferenceCommand
 
 import IncomingCallPage from 'ringcentral-widgets/containers/IncomingCallPage';
 import CallCtrlPage from 'ringcentral-widgets/containers/CallCtrlPage';
+import TransferPage from 'ringcentral-widgets/containers/TransferPage';
 import CallBadgeContainer from 'ringcentral-widgets/containers/CallBadgeContainer';
 import AudioSettingsPage from 'ringcentral-widgets/containers/AudioSettingsPage';
 
@@ -47,7 +49,7 @@ export default function App({
                 <CallBadgeContainer
                   defaultOffsetX={0}
                   defaultOffsetY={45}
-                  hidden={routerProps.location.pathname === '/calls/active'}
+                  hidden={routerProps.location.pathname.indexOf('/calls/active') > -1}
                   goToCallCtrl={() => {
                     phone.routerInteraction.push('/calls/active');
                   }}
@@ -99,6 +101,7 @@ export default function App({
                     callingSettingsUrl="/settings/calling"
                     showAudio
                     showFeedback={false}
+                    showUserGuide={false}
                   />
                 )}
               />
@@ -116,7 +119,20 @@ export default function App({
               />
               <Route
                 path="/calls"
-                component={ActiveCallsPage}
+                component={() => (
+                  <DialerAndCallsTabContainer>
+                    <ActiveCallsPage
+                      onCallsEmpty={() => {
+                        phone.routerInteraction.push('/dialer');
+                      }}
+                      useV2
+                      getAvatarUrl={async (contact) => {
+                        const avatarUrl = await phone.contacts.getProfileImage(contact);
+                        return avatarUrl;
+                      }}
+                    />
+                  </DialerAndCallsTabContainer>
+                )}
               />
               <Route
                 path="/history"
@@ -132,7 +148,17 @@ export default function App({
               />
               <Route
                 path="/dialer"
-                component={DialerPage}
+                component={() => (
+                  <DialerAndCallsTabContainer>
+                    {
+                      ({ showTabs }) => (
+                        <DialerPage
+                          withTabs={showTabs}
+                        />
+                      )
+                    }
+                  </DialerAndCallsTabContainer>
+                )}
               />
               <Route
                 path="/composeText"
@@ -175,9 +201,10 @@ export default function App({
                 }
               />
               <Route
-                path="/calls/active"
-                component={() => (
+                path="/calls/active(/:sessionId)"
+                component={routerProps => (
                   <CallCtrlPage
+                    params={routerProps.params}
                     showContactDisplayPlaceholder={false}
                     onAdd={() => {
                       phone.routerInteraction.push('/dialer');
@@ -192,6 +219,12 @@ export default function App({
                       }
                     }
                   />
+                )}
+              />
+              <Route
+                path="/transfer/:sessionId(/:type)"
+                component={routerProps => (
+                  <TransferPage params={routerProps.params} />
                 )}
               />
             </Route>

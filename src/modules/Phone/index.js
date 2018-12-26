@@ -33,6 +33,8 @@ import Ringout from 'ringcentral-integration/modules/Ringout';
 import NumberValidate from 'ringcentral-integration/modules/NumberValidate';
 import CallingSettings from 'ringcentral-integration/modules/CallingSettings';
 import AudioSettings from 'ringcentral-integration/modules/AudioSettings';
+import CallingSettingsUI from 'ringcentral-widgets/modules/CallingSettingsUI';
+import AudioSettingsUI from 'ringcentral-widgets/modules/AudioSettingsUI';
 import AccountExtension from 'ringcentral-integration/modules/AccountExtension';
 import ExtensionPhoneNumber from 'ringcentral-integration/modules/ExtensionPhoneNumber';
 import ForwardingNumber from 'ringcentral-integration/modules/ForwardingNumber';
@@ -93,6 +95,8 @@ import LocalPresence from '../LocalPresence';
     { provide: 'NumberValidate', useClass: NumberValidate },
     { provide: 'CallingSettings', useClass: CallingSettings },
     { provide: 'AudioSettings', useClass: AudioSettings },
+    { provide: 'AudioSettingsUI', useClass: AudioSettingsUI },
+    { provide: 'CallingSettingsUI', useClass: CallingSettingsUI },
     { provide: 'AccountExtension', useClass: AccountExtension },
     { provide: 'ExtensionPhoneNumber', useClass: ExtensionPhoneNumber },
     { provide: 'ForwardingNumber', useClass: ForwardingNumber },
@@ -145,23 +149,23 @@ export default class BasePhone extends RcModule {
     } = options;
     this._appConfig = appConfig;
 
-    webphone._onCallEndFunc = (session) => {
-      if (routerInteraction.currentPath !== '/calls/active') {
+    webphone.onCallEnd((session) => {
+      if (routerInteraction.currentPath.indexOf('/calls/active') === -1) {
         return;
       }
       const currentSession = webphone.activeSession;
       if (currentSession && session.id !== currentSession.id) {
         return;
       }
-      routerInteraction.goBack();
-    };
-    webphone._onCallStartFunc = () => {
-      if (routerInteraction.currentPath === '/calls/active') {
+      routerInteraction.push('/calls');
+    });
+    webphone.onCallStart(() => {
+      if (routerInteraction.currentPath.indexOf('/calls/active') > -1) {
         return;
       }
       routerInteraction.push('/calls/active');
-    };
-    webphone._onCallRingFunc = () => {
+    });
+    webphone.onCallRing(() => {
       if (
         webphone.ringSessions.length > 1
       ) {
@@ -172,7 +176,7 @@ export default class BasePhone extends RcModule {
           webphone.toggleMinimized(session.id);
         });
       }
-    };
+    })
 
     // ContactMatcher configuration
     contactMatcher.addSearchProvider({

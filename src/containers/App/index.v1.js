@@ -11,6 +11,7 @@ import SettingsPage from 'ringcentral-widgets/containers/SettingsPage';
 import WelcomePage from 'ringcentral-widgets/containers/WelcomePage';
 import ActiveCallsPage from 'ringcentral-widgets/containers/ActiveCallsPage';
 import CallHistoryPage from 'ringcentral-widgets/containers/CallHistoryPage';
+import DialerAndCallsTabContainer from 'ringcentral-widgets/containers/DialerAndCallsTabContainer';
 
 import AlertContainer from 'ringcentral-widgets/containers/AlertContainer';
 
@@ -85,7 +86,17 @@ export default function App({
               />
               <Route
                 path="/calls"
-                component={ActiveCallsPage}
+                component={() => (
+                  <DialerAndCallsTabContainer>
+                    <ActiveCallsPage
+                      onCallsEmpty={() => {
+                        phone.routerInteraction.push('/dialer');
+                      }}
+                      useV2
+                      getAvatarUrl={async () => null}
+                    />
+                  </DialerAndCallsTabContainer>
+                )}
               />
               <Route
                 path="/history"
@@ -101,7 +112,17 @@ export default function App({
               />
               <Route
                 path="/dialer"
-                component={DialerPage}
+                component={() => (
+                  <DialerAndCallsTabContainer>
+                    {
+                      ({ showTabs }) => (
+                        <DialerPage
+                          withTabs={showTabs}
+                        />
+                      )
+                    }
+                  </DialerAndCallsTabContainer>
+                )}
               />
               <Route
                 path="/composeText"
