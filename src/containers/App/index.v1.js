@@ -6,25 +6,33 @@ import { Router, Route } from 'react-router';
 import PhoneProvider from 'ringcentral-widgets/lib/PhoneProvider';
 import CallingSettingsPage from 'ringcentral-widgets/containers/CallingSettingsPage';
 import RegionSettingsPage from 'ringcentral-widgets/containers/RegionSettingsPage';
-import DialerPage from 'ringcentral-widgets/containers/DialerPage';
 import SettingsPage from 'ringcentral-widgets/containers/SettingsPage';
 import WelcomePage from 'ringcentral-widgets/containers/WelcomePage';
-import ActiveCallsPage from 'ringcentral-widgets/containers/ActiveCallsPage';
+
 import CallHistoryPage from 'ringcentral-widgets/containers/CallHistoryPage';
+
 import DialerAndCallsTabContainer from 'ringcentral-widgets/containers/DialerAndCallsTabContainer';
+import ActiveCallsPage from 'ringcentral-widgets/containers/ActiveCallsPage';
+import DialerPage from 'ringcentral-widgets/containers/DialerPage';
 
 import AlertContainer from 'ringcentral-widgets/containers/AlertContainer';
 
 import ComposeTextPage from 'ringcentral-widgets/containers/ComposeTextPage';
-import COnversationsPage from 'ringcentral-widgets/containers/ConversationsPage';
+import ConversationsPage from 'ringcentral-widgets/containers/ConversationsPage';
 import ConversationPage from 'ringcentral-widgets/containers/ConversationPage';
 
 import ConferencePage from 'ringcentral-widgets/containers/ConferencePage';
 import ConferenceCommands from 'ringcentral-widgets/components/ConferenceCommands';
 
+import IncomingCallPage from 'ringcentral-widgets/containers/IncomingCallPage';
+import CallCtrlPage from 'ringcentral-widgets/containers/CallCtrlPage';
+import TransferPage from 'ringcentral-widgets/containers/TransferPage';
+import CallBadgeContainer from 'ringcentral-widgets/containers/CallBadgeContainer';
+import AudioSettingsPage from 'ringcentral-widgets/containers/AudioSettingsPage';
+
 import MainView from '../MainView';
 import AppView from '../AppView';
-
+import ThirdPartyConferenceInviteButton from '../../components/ThirdPartyConferenceInviteButton';
 
 export default function App({
   phone,
@@ -40,6 +48,28 @@ export default function App({
                 hostingUrl={hostingUrl}
               >
                 {routerProps.children}
+                <CallBadgeContainer
+                  defaultOffsetX={0}
+                  defaultOffsetY={45}
+                  hidden={routerProps.location.pathname.indexOf('/calls/active') > -1}
+                  goToCallCtrl={() => {
+                    phone.routerInteraction.push('/calls/active');
+                  }}
+                />
+                <IncomingCallPage
+                  showContactDisplayPlaceholder={false}
+                  getAvatarUrl={
+                    async (contact) => {
+                      const avatarUrl = await phone.contacts.getProfileImage(contact);
+                      return avatarUrl;
+                    }
+                  }
+                >
+                  <AlertContainer
+                    callingSettingsUrl="/settings/calling"
+                    regionSettingsUrl="/settings/region"
+                  />
+                </IncomingCallPage>
               </AppView>
             )} >
             <Route
@@ -71,8 +101,9 @@ export default function App({
                     params={routerProps.location.query}
                     regionSettingsUrl="/settings/region"
                     callingSettingsUrl="/settings/calling"
-                    showAudio={false}
+                    showAudio
                     showFeedback={false}
+                    showUserGuide={false}
                   />
                 )}
               />
@@ -85,6 +116,10 @@ export default function App({
                 component={CallingSettingsPage}
               />
               <Route
+                path="/settings/audio"
+                component={AudioSettingsPage}
+              />
+              <Route
                 path="/calls"
                 component={() => (
                   <DialerAndCallsTabContainer>
@@ -93,7 +128,10 @@ export default function App({
                         phone.routerInteraction.push('/dialer');
                       }}
                       useV2
-                      getAvatarUrl={async () => null}
+                      getAvatarUrl={async (contact) => {
+                        const avatarUrl = await phone.contacts.getProfileImage(contact);
+                        return avatarUrl;
+                      }}
                     />
                   </DialerAndCallsTabContainer>
                 )}
@@ -141,7 +179,7 @@ export default function App({
               <Route
                 path="/messages"
                 component={() => (
-                  <COnversationsPage
+                  <ConversationsPage
                     showContactDisplayPlaceholder={false}
                     showGroupNumberName
                   />
@@ -157,6 +195,33 @@ export default function App({
               <Route
                 path="/conference"
                 component={ConferencePage}
+              />
+              <Route
+                path="/calls/active(/:sessionId)"
+                component={routerProps => (
+                  <CallCtrlPage
+                    params={routerProps.params}
+                    showContactDisplayPlaceholder={false}
+                    onAdd={() => {
+                      phone.routerInteraction.push('/dialer');
+                    }}
+                    onBackButtonClick={() => {
+                      phone.routerInteraction.push('/calls');
+                    }}
+                    getAvatarUrl={
+                      async (contact) => {
+                        const avatarUrl = await phone.contacts.getProfileImage(contact);
+                        return avatarUrl;
+                      }
+                    }
+                  />
+                )}
+              />
+              <Route
+                path="/transfer/:sessionId(/:type)"
+                component={routerProps => (
+                  <TransferPage params={routerProps.params} />
+                )}
               />
             </Route>
           </Route>

@@ -6,12 +6,14 @@ import { Router, Route } from 'react-router';
 import PhoneProvider from 'ringcentral-widgets/lib/PhoneProvider';
 import CallingSettingsPage from 'ringcentral-widgets/containers/CallingSettingsPage';
 import RegionSettingsPage from 'ringcentral-widgets/containers/RegionSettingsPage';
-import DialerPage from 'ringcentral-widgets/containers/DialerPage';
 import SettingsPage from 'ringcentral-widgets/containers/SettingsPage';
 import WelcomePage from 'ringcentral-widgets/containers/WelcomePage';
-import ActiveCallsPage from 'ringcentral-widgets/containers/ActiveCallsPage';
+
 import CallHistoryPage from 'ringcentral-widgets/containers/CallHistoryPage';
+
 import DialerAndCallsTabContainer from 'ringcentral-widgets/containers/DialerAndCallsTabContainer';
+import ActiveCallsPage from 'ringcentral-widgets/containers/ActiveCallsPage';
+import DialerPage from 'ringcentral-widgets/containers/DialerPage';
 
 import AlertContainer from 'ringcentral-widgets/containers/AlertContainer';
 

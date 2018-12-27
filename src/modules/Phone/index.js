@@ -26,6 +26,7 @@ import CallLog from 'ringcentral-integration/modules/CallLog';
 import CallMonitor from 'ringcentral-integration/modules/CallMonitor';
 import CallHistory from 'ringcentral-integration/modules/CallHistory';
 import DetailedPresence from 'ringcentral-integration/modules/DetailedPresence';
+import ExtensionPhoneNumber from 'ringcentral-integration/modules/ExtensionPhoneNumber';
 
 import Call from 'ringcentral-integration/modules/Call';
 import Softphone from 'ringcentral-integration/modules/Softphone';
@@ -36,7 +37,6 @@ import AudioSettings from 'ringcentral-integration/modules/AudioSettings';
 import CallingSettingsUI from 'ringcentral-widgets/modules/CallingSettingsUI';
 import AudioSettingsUI from 'ringcentral-widgets/modules/AudioSettingsUI';
 import AccountExtension from 'ringcentral-integration/modules/AccountExtension';
-import ExtensionPhoneNumber from 'ringcentral-integration/modules/ExtensionPhoneNumber';
 import ForwardingNumber from 'ringcentral-integration/modules/ForwardingNumber';
 import DialerUI from 'ringcentral-widgets/modules/DialerUI';
 
@@ -48,7 +48,6 @@ import MessageStore from 'ringcentral-integration/modules/MessageStore';
 import Conversations from 'ringcentral-integration/modules/Conversations';
 import MessageSender from 'ringcentral-integration/modules/MessageSender';
 import ComposeText from 'ringcentral-integration/modules/ComposeText';
-import ContactSearch from 'ringcentral-integration/modules/ContactSearch';
 
 import Conference from 'ringcentral-integration/modules/Conference';
 
@@ -59,7 +58,7 @@ import AccountPhoneNumber from 'ringcentral-integration/modules/AccountPhoneNumb
 import AccountContacts from 'ringcentral-integration/modules/AccountContacts';
 import ContactMatcher from 'ringcentral-integration/modules/ContactMatcher';
 import Contacts from 'ringcentral-integration/modules/Contacts';
-import LocalForageStorage from 'ringcentral-integration/lib/LocalForageStorage';
+import ContactSearch from 'ringcentral-integration/modules/ContactSearch';
 import LocalPresence from '../LocalPresence';
 // user Dependency Injection with decorator to create a phone class
 // https://github.com/ringcentral/ringcentral-js-integration-commons/blob/master/docs/dependency-injection.md
@@ -88,6 +87,7 @@ import LocalPresence from '../LocalPresence';
     { provide: 'CallMonitor', useClass: CallMonitor },
     { provide: 'CallHistory', useClass: CallHistory },
     { provide: 'DetailedPresence', useClass: DetailedPresence },
+    { provide: 'ExtensionPhoneNumber', useClass: ExtensionPhoneNumber },
     { provide: 'Call', useClass: Call },
     { provide: 'DialerUI', useClass: DialerUI },
     { provide: 'Softphone', useClass: Softphone },
@@ -98,15 +98,14 @@ import LocalPresence from '../LocalPresence';
     { provide: 'AudioSettingsUI', useClass: AudioSettingsUI },
     { provide: 'CallingSettingsUI', useClass: CallingSettingsUI },
     { provide: 'AccountExtension', useClass: AccountExtension },
-    { provide: 'ExtensionPhoneNumber', useClass: ExtensionPhoneNumber },
     { provide: 'ForwardingNumber', useClass: ForwardingNumber },
     { provide: 'LocalPresence', useClass: LocalPresence },
+    
     { provide: 'MessageStore', useClass: MessageStore },
-
     { provide: 'Conversations', useClass: Conversations },
     { provide: 'MessageSender', useClass: MessageSender },
     { provide: 'ComposeText', useClass: ComposeText },
-    { provide: 'ContactSearch', useClass: ContactSearch },
+
     { provide: 'Conference', useClass: Conference },
     {
       provide: 'EnvironmentOptions',
@@ -130,6 +129,7 @@ import LocalPresence from '../LocalPresence';
     { provide: 'AccountPhoneNumber', useClass: AccountPhoneNumber },
     { provide: 'Contacts', useClass: Contacts },
     { provide: 'ContactMatcher', useClass: ContactMatcher },
+    { provide: 'ContactSearch', useClass: ContactSearch },
     {
       provide: 'ContactSources',
       useFactory: ({ addressBook, accountContacts }) =>
@@ -176,7 +176,7 @@ export default class BasePhone extends RcModule {
           webphone.toggleMinimized(session.id);
         });
       }
-    })
+    });
 
     // ContactMatcher configuration
     contactMatcher.addSearchProvider({
