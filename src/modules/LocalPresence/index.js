@@ -8,7 +8,7 @@ import actionTypes from './actionTypes';
 
 @Module({
   deps: [
-    { dep: 'DetailedPresence' },
+    { dep: 'Presence' },
     { dep: 'GlobalStorage' },
     { dep: 'Storage' },
     { dep: 'LocalPresenceOptions', optional: true, spread: true },
@@ -16,17 +16,17 @@ import actionTypes from './actionTypes';
 })
 export default class LocalPresence extends RcModule {
   constructor({
-    detailedPresence,
+    presence,
     storage,
     globalStorage,
-    ...options,
+    ...options
   }) {
     super({
       actionTypes,
       ...options,
     });
 
-    this._detailedPresence = detailedPresence;
+    this._presence = presence;
     this._storage = storage;
     this._globalStorage = globalStorage;
 
@@ -60,8 +60,8 @@ export default class LocalPresence extends RcModule {
       });
     }
     if (this.ready) {
-      if (this._lastCalls !== this._detailedPresence.calls) {
-        this._lastCalls = this._detailedPresence.calls;
+      if (this._lastCalls !== this._presence.calls) {
+        this._lastCalls = this._presence.calls;
         console.log(this._lastCalls);
       }
     }
@@ -69,7 +69,7 @@ export default class LocalPresence extends RcModule {
 
   _shouldInit() {
     return (
-      this._detailedPresence.ready &&
+      this._presence.ready &&
       this.pending
     );
   }
@@ -77,7 +77,7 @@ export default class LocalPresence extends RcModule {
   _shouldReset() {
     return (
       (
-        !this._detailedPresence.ready
+        !this._presence.ready
       ) &&
       this.ready
     );

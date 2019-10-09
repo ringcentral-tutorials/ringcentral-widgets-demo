@@ -19,6 +19,7 @@ const apiConfig = {
 const version = packageConfig.version;
 
 const config = {
+  mode: 'production',
   entry: {
     index: './src/index.js',
     proxy: './src/proxy.js',
@@ -29,14 +30,6 @@ const config = {
     filename: '[name].js',
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-      },
-      output: {
-        comments: false,
-      },
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
@@ -45,7 +38,6 @@ const config = {
       },
     }),
     new CopyWebpackPlugin([
-      { from: 'src/assets', to: 'assets' },
       { from: 'src/index.html', to: 'index.html' },
       { from: 'src/proxy.html', to: 'proxy.html' },
       { from: 'src/redirect.html', to: 'redirect.html' },
@@ -74,7 +66,19 @@ const config = {
         exclude: /font|src(\/|\\)assets(\/|\\)images/,
         use: [
           'babel-loader',
-          'react-svg-loader',
+          {
+            loader: 'react-svg-loader',
+            options: {
+              jsx: true,
+              svgo: {
+                plugins: [
+                  {
+                    removeViewBox: false,
+                  },
+                ],
+              }
+            }
+          },
         ],
       },
       {

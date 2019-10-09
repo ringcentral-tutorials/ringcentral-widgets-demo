@@ -7,7 +7,7 @@ import PhoneProvider from 'ringcentral-widgets/lib/PhoneProvider';
 import CallingSettingsPage from 'ringcentral-widgets/containers/CallingSettingsPage';
 import RegionSettingsPage from 'ringcentral-widgets/containers/RegionSettingsPage';
 import SettingsPage from 'ringcentral-widgets/containers/SettingsPage';
-import WelcomePage from 'ringcentral-widgets/containers/WelcomePage';
+import LoginPage from 'ringcentral-widgets/containers/LoginPage';
 
 import CallHistoryPage from 'ringcentral-widgets/containers/CallHistoryPage';
 
@@ -16,6 +16,7 @@ import ActiveCallsPage from 'ringcentral-widgets/containers/ActiveCallsPage';
 import DialerPage from 'ringcentral-widgets/containers/DialerPage';
 
 import AlertContainer from 'ringcentral-widgets/containers/AlertContainer';
+import ConnectivityBadgeContainer from 'ringcentral-widgets/containers/ConnectivityBadgeContainer';
 
 import ComposeTextPage from 'ringcentral-widgets/containers/ComposeTextPage';
 import ConversationsPage from 'ringcentral-widgets/containers/ConversationsPage';
@@ -48,12 +49,13 @@ export default function App({
                 hostingUrl={hostingUrl}
               >
                 {routerProps.children}
+                <ConnectivityBadgeContainer />
                 <CallBadgeContainer
                   defaultOffsetX={0}
                   defaultOffsetY={45}
                   hidden={routerProps.location.pathname.indexOf('/calls/active') > -1}
-                  goToCallCtrl={() => {
-                    phone.routerInteraction.push('/calls/active');
+                  goToCallCtrl={(sessionId) => {
+                    phone.routerInteraction.push(`/calls/active/${sessionId}`);
                   }}
                 />
                 <IncomingCallPage
@@ -75,12 +77,12 @@ export default function App({
             <Route
               path="/"
               component={() => (
-                <WelcomePage>
+                <LoginPage>
                   <AlertContainer
                     callingSettingsUrl="/settings/calling"
                     regionSettingsUrl="/settings/region"
                   />
-                </WelcomePage>
+                </LoginPage>
               )}
             />
             <Route

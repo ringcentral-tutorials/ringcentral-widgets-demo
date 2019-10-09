@@ -1,4 +1,3 @@
-import 'whatwg-fetch';
 import SDK from 'ringcentral';
 import RingCentralClient from 'ringcentral-client';
 
@@ -25,8 +24,9 @@ import Storage from 'ringcentral-integration/modules/Storage';
 import CallLog from 'ringcentral-integration/modules/CallLog';
 import CallMonitor from 'ringcentral-integration/modules/CallMonitor';
 import CallHistory from 'ringcentral-integration/modules/CallHistory';
-import DetailedPresence from 'ringcentral-integration/modules/DetailedPresence';
+import Presence from 'ringcentral-integration/modules/Presence';
 import ExtensionPhoneNumber from 'ringcentral-integration/modules/ExtensionPhoneNumber';
+import ActiveCallsUI from 'ringcentral-widgets/modules/ActiveCallsUI';
 
 import Call from 'ringcentral-integration/modules/Call';
 import Softphone from 'ringcentral-integration/modules/Softphone';
@@ -36,25 +36,30 @@ import CallingSettings from 'ringcentral-integration/modules/CallingSettings';
 import AudioSettings from 'ringcentral-integration/modules/AudioSettings';
 import CallingSettingsUI from 'ringcentral-widgets/modules/CallingSettingsUI';
 import AudioSettingsUI from 'ringcentral-widgets/modules/AudioSettingsUI';
-import AccountExtension from 'ringcentral-integration/modules/AccountExtension';
 import ForwardingNumber from 'ringcentral-integration/modules/ForwardingNumber';
 import DialerUI from 'ringcentral-widgets/modules/DialerUI';
 
 import OAuth from 'ringcentral-widgets/modules/ProxyFrameOAuth';
 import RouterInteraction from 'ringcentral-widgets/modules/RouterInteraction';
-
+import ConnectivityManager from 'ringcentral-widgets/modules/ConnectivityManager';
+import ConnectivityBadgeUI from 'ringcentral-widgets/modules/ConnectivityBadgeUI';
+import SettingsPageUI from 'ringcentral-widgets/modules/SettingsPageUI';
+import LoginUI from 'ringcentral-widgets/modules/LoginUI';
+import AlertUI from 'ringcentral-widgets/modules/AlertUI';
 
 import MessageStore from 'ringcentral-integration/modules/MessageStore';
 import Conversations from 'ringcentral-integration/modules/Conversations';
 import MessageSender from 'ringcentral-integration/modules/MessageSender';
 import ComposeText from 'ringcentral-integration/modules/ComposeText';
+import ComposeTextUI from 'ringcentral-widgets/modules/ComposeTextUI';
 
 import Conference from 'ringcentral-integration/modules/Conference';
+import ConferenceUI from 'ringcentral-widgets/modules/ConferenceUI';
 
 import Webphone from 'ringcentral-integration/modules/Webphone';
 import ExtensionDevice from 'ringcentral-integration/modules/ExtensionDevice';
 import AddressBook from 'ringcentral-integration/modules/AddressBook';
-import AccountPhoneNumber from 'ringcentral-integration/modules/AccountPhoneNumber';
+import CompanyContacts from 'ringcentral-integration/modules/CompanyContacts';
 import AccountContacts from 'ringcentral-integration/modules/AccountContacts';
 import ContactMatcher from 'ringcentral-integration/modules/ContactMatcher';
 import Contacts from 'ringcentral-integration/modules/Contacts';
@@ -65,10 +70,15 @@ import LocalPresence from '../LocalPresence';
 @ModuleFactory({
   providers: [
     { provide: 'Alert', useClass: Alert },
+    { provide: 'AlertUI', useClass: AlertUI },
     { provide: 'Brand', useClass: Brand },
     { provide: 'Locale', useClass: Locale },
     { provide: 'GlobalStorage', useClass: GlobalStorage },
     { provide: 'ConnectivityMonitor', useClass: ConnectivityMonitor },
+    { provide: 'ConnectivityManager', useClass: ConnectivityManager },
+    { provide: 'ConnectivityBadgeUI', useClass: ConnectivityBadgeUI },
+    { provide: 'SettingsPageUI', useClass: SettingsPageUI },
+    { provide: 'LoginUI', useClass: LoginUI },
     { provide: 'Auth', useClass: Auth },
     { provide: 'OAuth', useClass: OAuth },
     { provide: 'Storage', useClass: Storage },
@@ -86,7 +96,8 @@ import LocalPresence from '../LocalPresence';
     { provide: 'CallLog', useClass: CallLog },
     { provide: 'CallMonitor', useClass: CallMonitor },
     { provide: 'CallHistory', useClass: CallHistory },
-    { provide: 'DetailedPresence', useClass: DetailedPresence },
+    { provide: 'ActiveCallsUI', useClass: ActiveCallsUI },
+    { provide: 'Presence', useClass: Presence },
     { provide: 'ExtensionPhoneNumber', useClass: ExtensionPhoneNumber },
     { provide: 'Call', useClass: Call },
     { provide: 'DialerUI', useClass: DialerUI },
@@ -94,19 +105,35 @@ import LocalPresence from '../LocalPresence';
     { provide: 'Ringout', useClass: Ringout },
     { provide: 'NumberValidate', useClass: NumberValidate },
     { provide: 'CallingSettings', useClass: CallingSettings },
+    {
+      provide: 'CallOptions',
+      useValue: {
+        permissionCheck: false,
+      },
+      spread: true,
+    },
+    {
+      provide: 'CallingSettingsOptions',
+      useValue: {
+        emergencyCallAvailable: true,
+      },
+      spread: true,
+    },
     { provide: 'AudioSettings', useClass: AudioSettings },
     { provide: 'AudioSettingsUI', useClass: AudioSettingsUI },
     { provide: 'CallingSettingsUI', useClass: CallingSettingsUI },
-    { provide: 'AccountExtension', useClass: AccountExtension },
     { provide: 'ForwardingNumber', useClass: ForwardingNumber },
     { provide: 'LocalPresence', useClass: LocalPresence },
-    
+
     { provide: 'MessageStore', useClass: MessageStore },
     { provide: 'Conversations', useClass: Conversations },
     { provide: 'MessageSender', useClass: MessageSender },
     { provide: 'ComposeText', useClass: ComposeText },
+    { provide: 'ComposeTextUI', useClass: ComposeTextUI },
 
     { provide: 'Conference', useClass: Conference },
+    { provide: 'ConferenceUI', useClass: ConferenceUI },
+
     {
       provide: 'EnvironmentOptions',
       useFactory: ({ sdkConfig }) => sdkConfig,
@@ -125,8 +152,8 @@ import LocalPresence from '../LocalPresence';
     { provide: 'Webphone', useClass: Webphone },
     { provide: 'ExtensionDevice', useClass: ExtensionDevice },
     { provide: 'AccountContacts', useClass: AccountContacts },
+    { provide: 'CompanyContacts', useClass: CompanyContacts },
     { provide: 'AddressBook', useClass: AddressBook },
-    { provide: 'AccountPhoneNumber', useClass: AccountPhoneNumber },
     { provide: 'Contacts', useClass: Contacts },
     { provide: 'ContactMatcher', useClass: ContactMatcher },
     { provide: 'ContactSearch', useClass: ContactSearch },
