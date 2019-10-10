@@ -764,6 +764,10 @@
 #viewsaurus .saurus-prose .saurus-content .chapter:first-child .step:first-child {
   display: block;
 }
+#viewsaurus .saurus-prose ol {
+  list-style: decimal;
+  font-size: 14px;
+}
 #viewsaurus .saurus-code {
   position: absolute;
   top: 0;

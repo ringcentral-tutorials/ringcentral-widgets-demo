@@ -74,6 +74,14 @@ var Router = Backbone.Router.extend({
             si = self.app.totalSteps - 1;
         }
         self.app.set('stepIndex', si);
+
+        if (si === self.app.totalSteps - 1) {
+            setTimeout(function () {
+                mixpanelClient.track(mixpanelClient.eventNames.COMPLETE_TUTORIAL, {
+                    'Tutorial Name': window.tutorialName
+                });
+            });
+        }
     }
 });
 
@@ -128,11 +136,12 @@ module.exports = Backbone.Model.extend({// Initialize model and app
     }
 });
 
-},{"./Router":2,"./views/ViewsaurusView":9}],4:[function(require,module,exports){
+},{"./Router":2,"./views/ViewsaurusView":10}],4:[function(require,module,exports){
 var dpwMenu = function () {
     var items = [
         {
             title: 'API Product',
+            link: 'https://developer.ringcentral.com/api-products',
             items: [
                 {
                     title: 'Voice',
@@ -157,6 +166,14 @@ var dpwMenu = function () {
                 {
                     title: 'Configuration',
                     link: 'https://developer.ringcentral.com/api-products/configuration'
+                },
+                {
+                    title: 'Embeddable Voice',
+                    link: 'https://developer.ringcentral.com/embeddable-voice.html'
+                },
+                {
+                    title: 'Meetings',
+                    link: 'https://developer.ringcentral.com/api-products/meetings'
                 }
             ]
         },
@@ -209,7 +226,7 @@ var dpwMenu = function () {
                 },
                 {
                     title: 'Tutorials',
-                    link: 'https://ringcentral.github.io/tutorials/'
+                    link: 'https://developers.ringcentral.com/tutorials.html'
                 },
                 {
                     title: 'API Reference',
@@ -248,9 +265,8 @@ var dpwMenu = function () {
                     link: 'https://developer.ringcentral.com/support/services.html'
                 },
                 {
-                    title: 'Academy',
-                    link: 'https://captivateprime.adobe.com/eplogin?groupid=1282&accesskey=8176c9a1nak1n',
-                    external: true
+                    title: 'Developer Events',
+                    link: 'https://developer.ringcentral.com/support/developer-events.html'
                 },
                 {
                     title: 'Community',
@@ -316,6 +332,7 @@ module.exports = dpwMenu;
 },{}],5:[function(require,module,exports){
 var Viewsaurus = require('./Viewsaurus');
 var GoogleAnalytics = require('./GoogleAnalytics');
+var Mixpanel = require('./mixpanel');
 var dpwMenu = require('./dpwMenu');
 
 $(function () {
@@ -346,9 +363,60 @@ $(function () {
             $prose.resizable("option", "minHeight", $prose.height());
         }
     });
+
+    // Create Mixpanel client
+    window.mixpanelClient = new Mixpanel('60593de695a204f03647d2fb95d96313');
+    mixpanelClient.identifyUserFromURL();
+
+    mixpanelClient.track(mixpanelClient.eventNames.PAGE_VIEW, {
+        'Page Name': 'Tutorials: ' + window.tutorialName
+    });
+
+    viewsaurus.mainView.proseView.$start.find('a').click(function () {
+        mixpanelClient.track(mixpanelClient.eventNames.START_TUTORIAL, {
+            'Tutorial Name': window.tutorialName
+        });
+    });
 });
 
-},{"./GoogleAnalytics":1,"./Viewsaurus":3,"./dpwMenu":4}],6:[function(require,module,exports){
+},{"./GoogleAnalytics":1,"./Viewsaurus":3,"./dpwMenu":4,"./mixpanel":6}],6:[function(require,module,exports){
+var Mixpanel = function (token) {
+    (function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+        0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+        for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+
+    mixpanel.init(token, {autotrack: false});
+};
+
+Mixpanel.prototype.eventNames = {
+    PAGE_VIEW: 'Pageviews',
+    START_TUTORIAL: 'Start Tutorial',
+    COMPLETE_TUTORIAL: 'Complete Tutorial'
+};
+
+Mixpanel.prototype.distinctIdUrlSearchKey = 'distinctId';
+
+Mixpanel.prototype.track = function (eventName, properties) {
+    mixpanel.track(eventName, properties);
+};
+
+Mixpanel.prototype.identifyUserFromURL = function () {
+    var searchParamPairs = location.search.substring(1).split('&');
+    var searchParams = _.reduce(searchParamPairs, function (accumulated, pair) {
+        var keyValueGroup = pair.split('=');
+        var key = _.first(keyValueGroup);
+        accumulated[key] = _.last(keyValueGroup);
+        return accumulated;
+    }, {});
+
+    var distinctId = searchParams[this.distinctIdUrlSearchKey];
+    if (distinctId) {
+        mixpanel.identify(distinctId);
+    }
+};
+
+module.exports = Mixpanel;
+},{}],7:[function(require,module,exports){
 var Range = ace.require('ace/range').Range;
 var explorerWidth = 270;
 
@@ -525,7 +593,7 @@ var CodeView = Backbone.View.extend({
 });
 
 module.exports = CodeView;
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 var explorerWidth = -270;
 var autoShowExplorer = 1280;
 
@@ -673,7 +741,7 @@ var ExplorerView = Backbone.View.extend({
 });
 
 module.exports = ExplorerView;
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 // Get Title for a step either from a data attribute or the first title tag
 function titleForStep($e) {
     var title = $e.attr('data-title');
@@ -912,7 +980,7 @@ var ProseView = Backbone.View.extend({
 });
 
 module.exports = ProseView;
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 var ProseView = require('./ProseView');
 var CodeView = require('./CodeView');
 var ExplorerView = require('./ExplorerView');
@@ -921,6 +989,8 @@ var ExplorerView = require('./ExplorerView');
 var ViewsaurusView = Backbone.View.extend({
     // Initialize UI
     initialize: function(options) {
+        var self = this;
+
         // Store a reference to main app model
         this.app = options.app;
 
@@ -932,4 +1002,4 @@ var ViewsaurusView = Backbone.View.extend({
 });
 
 module.exports = ViewsaurusView;
-},{"./CodeView":6,"./ExplorerView":7,"./ProseView":8}]},{},[5]);
+},{"./CodeView":7,"./ExplorerView":8,"./ProseView":9}]},{},[5]);
