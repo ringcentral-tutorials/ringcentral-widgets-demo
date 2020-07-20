@@ -8,7 +8,7 @@
         * Create a [RingCentral developer free account](https://developer.ringcentral.com)
         * Create a new RingCentral app with platform type - "Browser Based"
         * Add `Read Accounts` and `Subscription Webhook` to permissions
-        * Install `ringcentral-widgets-cli` >= 0.1.0
+        * Install `ringcentral-widgets-cli` >= 0.2.0
 
     .step(data-title='Initialize base project', data-file='README.md', data-highlight='18-25')
       :markdown
@@ -86,21 +86,21 @@
 
          Before we start, you need to add `Read CallLog` and `Edit Presence` permissions to your [RingCentral app](https://developer.ringcentral.com).
 
-    .step(data-title='Add call history related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='24-29,96-101')
+    .step(data-title='Add call history related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='24-30,97-103')
       :markdown
         ## Update Phone module
 
         * Import call history related modules
         * Add call history related modules to dependences
 
-    .step(data-title='Add call history UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='12,141-148')
+    .step(data-title='Add call history UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='12,137-144')
       :markdown
         ## Update App container
 
         * Import `CallHistoryPage`
         * Add containers to routers
 
-    .step(data-title='Add call history tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='8,11,30-35')
+    .step(data-title='Add call history tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='8,11,27-32')
       :markdown
         ## Update tabs
 
@@ -129,20 +129,20 @@
 
         Before we start, you need to add `RingOut` permissions to your [RingCentral app](https://developer.ringcentral.com).
 
-    .step(data-title='Add call related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='30-41,102-125')
+    .step(data-title='Add call related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='32-42,104-125')
       :markdown
         ## Update Phone module
 
         * Import call related modules
         * Add call related modules to dependences
 
-    .step(data-title='Add call UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='7,14-16,124-140,149-166')
+    .step(data-title='Add call UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='7,14-16,120-136,145-162')
       :markdown
         ## Update App container
 
         * Import `CallingSettingsPage`, `ActiveCallsPage`, `DialerAndCallsTabContainer` and `DialerPage`
         * Add containers to routers
-    .step(data-title='Add dialer tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='14-15,24-29')
+    .step(data-title='Add dialer tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='14-15,21-26')
       :markdown
         ## Add dialer tab
 
@@ -171,24 +171,24 @@
         ### Add permissions
 
         Before we start, you need to add `VoIP Calling` permissions to your [RingCentral app](https://developer.ringcentral.com).
-    .step(data-title='Add web phone related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='59-66,152-165')
+    .step(data-title='Add web phone related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='58-66,152-166')
       :markdown
         ## Update Phone module
 
         * Import web phone related modules
         * Add web phone related modules to dependences
-    .step(data-title='Add web phone UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='27-32,53-74,120-123,207-233')
+    .step(data-title='Add web phone UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='25-29,49-70,116-119,185-211')
       :markdown
         ## Update App container
 
         * Import `IncomingCallPage`, `CallCtrlPage`, `CallBadgeContainer`, and `AudioSettingsPage` containers
         * Add containers to routers
-    .step(data-title='Add web phone hooks to Phone module', data-file='src/modules/Phone/index.js' data-highlight='179-206')
+    .step(data-title='Add web phone hooks to Phone module', data-file='src/modules/Phone/index.js' data-highlight='179-207')
       :markdown
         ## Add webphne hooks
 
         * Add webphone hook to drive route
-    .step(data-title='Add contacts matcher to Phone module', data-file='src/modules/Phone/index.js' data-highlight='64,158,208-232')
+    .step(data-title='Add contacts matcher to Phone module', data-file='src/modules/Phone/index.js' data-highlight='64,159,208-233')
       :markdown
         ## Add contact matcher
 
@@ -214,21 +214,21 @@
          ### Add permissions
 
          Before we start, you need to add `SMS`, `Internal Messages`, `Read Messages` and `Edit Messages` permissions to your [RingCentral app](https://developer.ringcentral.com).
-    .step(data-title='Add messages related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='50-54,128-132')
+    .step(data-title='Add messages related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='52-56,132-136')
       :markdown
         ## Update Phone module
 
         * Import messages history related modules
-        * Add message related modules to dependences
+        * Add message related modules to dependencies
 
-    .step(data-title='Add messages UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='20-23,167-188')
+    .step(data-title='Add messages UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='20-23,163-184')
       :markdown
         ## Update App container
 
         * Import `ComposeTextPage`, `ConversationsPage` and `ConversationPage`
         * Add containers to routers
 
-    .step(data-title='Add messages tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='17-18,36-45')
+    .step(data-title='Add messages tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='17-18,33-42')
       :markdown
         ## Update tabs
 
@@ -242,71 +242,20 @@
         Congradulations! Now you have finished adding messages feature to your app.
 
         Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
-  .chapter(data-title='Add conference feature to App')
-    .step(data-title='Add conference feature to App', data-file='README.md')
-      :markdown
-         In this chapter, we will learn how to add conference feature to our app.
-
-         It includes 3 steps:
-
-         * Add conference related modules to Phone module
-         * Add conference UI container and router to App container
-         * Add conference tab to MainView
-         * Add third party button on conference invite page
-
-    .step(data-title='Add conference related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='56-57,134-135')
-      :markdown
-        ## Update Phone module
-
-        * Import conference related modules
-        * Add conference related modules to dependences
-
-    .step(data-title='Add conference UI container and router to App container', data-file='src/containers/App/index.v1.js' data-highlight='24-26,189-200')
-      :markdown
-        Update App container in `src/containers/App/index.js`
-
-        * Import `ConferenceCommands` and `ConferencePage`
-        * Add containers to routers
-
-    .step(data-title='Add conference tab to MainView', data-file='src/containers/MainView/index.js' data-highlight='20-21,46-54')
-      :markdown
-        ## Update tabs
-
-        * Import tab icon
-        * Add `Conference` tab
-    .step(data-title='Add a third party button', data-file='src/components/ThirdPartyConferenceInviteButton/index.js')
-      :markdown
-        ## Create a Button component
-
-        Add your logics here to interact with third party platform.
-        In this tutorial, we use google calendar as third party platform.
-    .step(data-title='Add button to conference page', data-file='src/containers/App/index.js' data-highlight='36,197-206')
-      :markdown
-        ## Add button to conference page
-
-        Pass the button component to conference page in App container.
-
-    .step(data-title='Play with conference feature', data-file='README.md')
-      :markdown
-        ## Play with conference feature
-
-        Congradulations! Now you have finished adding conference scheduling feature to your app.
-
-        Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
   .chapter(data-title='Add a new module')
     .step(data-title='Use CLI to generate module scaffold', data-file='src/modules/LocalPresence/index.js')
       :markdown
         ## Use CLI to generate module scaffold
 
         ```
-        $ rc-widgets g Module LocalPresence -d DetailedPresence
+        $ rc-widgets g Module LocalPresence -d Presence
         ```
 
-        It will create a module named LocalPresence with dependence DetailedPresence in `src/modules`.
-    .step(data-title='Add moudule to Phone module', data-file='src/modules/Phone/index.js' data-highlight='67,126')
+        It will create a module named LocalPresence with dependence Presence in `src/modules`.
+    .step(data-title='Add module to Phone module', data-file='src/modules/Phone/index.js' data-highlight='67,130')
       :markdown
         Import `LocalPresence` and add to phone module.
-    .step(data-title='Subsciption calls', data-file='src/modules/LocalPresence/index.js' data-highlight='62-67')
+    .step(data-title='Subscription calls', data-file='src/modules/LocalPresence/index.js' data-highlight='62-67')
       :markdown
         Check if there are calls changed on state changed.
     .step(data-title='Save data to storage - actionTypes', data-file='src/modules/LocalPresence/actionTypes.js')
