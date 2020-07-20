@@ -38,7 +38,6 @@ import AudioSettings from 'ringcentral-integration/modules/AudioSettings';
 import AudioSettingsUI from 'ringcentral-widgets/modules/AudioSettingsUI';
 import ForwardingNumber from 'ringcentral-integration/modules/ForwardingNumber';
 import DialerUI from 'ringcentral-widgets/modules/DialerUI';
-import CallBadgeUI from 'ringcentral-widgets/modules/CallBadgeUI';
 import { CallingSettingsUI } from 'ringcentral-widgets/modules/CallingSettingsUI';
 
 import OAuth from 'ringcentral-widgets/modules/ProxyFrameOAuth';
@@ -57,6 +56,7 @@ import ComposeText from 'ringcentral-integration/modules/ComposeText';
 import ComposeTextUI from 'ringcentral-widgets/modules/ComposeTextUI';
 
 import Webphone from 'ringcentral-integration/modules/Webphone';
+import CallBadgeUI from 'ringcentral-widgets/modules/CallBadgeUI';
 import ExtensionDevice from 'ringcentral-integration/modules/ExtensionDevice';
 import AddressBook from 'ringcentral-integration/modules/AddressBook';
 import CompanyContacts from 'ringcentral-integration/modules/CompanyContacts';
@@ -97,6 +97,7 @@ import LocalPresence from '../LocalPresence';
     { provide: 'CallLog', useClass: CallLog },
     { provide: 'CallMonitor', useClass: CallMonitor },
     { provide: 'CallHistory', useClass: CallHistory },
+    { provide: 'CallHistoryUI', useClass: CallHistoryUI },
     { provide: 'ActiveCallsUI', useClass: ActiveCallsUI },
     { provide: 'Presence', useClass: Presence },
     { provide: 'ExtensionPhoneNumber', useClass: ExtensionPhoneNumber },
@@ -106,8 +107,6 @@ import LocalPresence from '../LocalPresence';
     { provide: 'Ringout', useClass: Ringout },
     { provide: 'NumberValidate', useClass: NumberValidate },
     { provide: 'CallingSettings', useClass: CallingSettings },
-    { provide: 'CallBadgeUI', useClass: CallBadgeUI },
-    { provide: 'CallHistoryUI', useClass: CallHistoryUI },
     {
       provide: 'CallOptions',
       useValue: {
@@ -123,10 +122,11 @@ import LocalPresence from '../LocalPresence';
       },
       spread: true,
     },
+    { provide: 'CallingSettingsUI', useClass: CallingSettingsUI },
     { provide: 'AudioSettings', useClass: AudioSettings },
     { provide: 'AudioSettingsUI', useClass: AudioSettingsUI },
-    { provide: 'CallingSettingsUI', useClass: CallingSettingsUI },
     { provide: 'ForwardingNumber', useClass: ForwardingNumber },
+  
     { provide: 'LocalPresence', useClass: LocalPresence },
 
     { provide: 'MessageStore', useClass: MessageStore },
@@ -150,6 +150,7 @@ import LocalPresence from '../LocalPresence';
       ],
     },
     { provide: 'Webphone', useClass: Webphone },
+    { provide: 'CallBadgeUI', useClass: CallBadgeUI },
     { provide: 'ExtensionDevice', useClass: ExtensionDevice },
     { provide: 'AccountContacts', useClass: AccountContacts },
     { provide: 'CompanyContacts', useClass: CompanyContacts },
