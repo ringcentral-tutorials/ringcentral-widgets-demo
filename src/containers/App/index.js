@@ -22,9 +22,6 @@ import ComposeTextPage from 'ringcentral-widgets/containers/ComposeTextPage';
 import ConversationsPage from 'ringcentral-widgets/containers/ConversationsPage';
 import ConversationPage from 'ringcentral-widgets/containers/ConversationPage';
 
-import ConferencePage from 'ringcentral-widgets/containers/ConferencePage';
-import ConferenceCommands from 'ringcentral-widgets/components/ConferenceCommands';
-
 import IncomingCallPage from 'ringcentral-widgets/containers/IncomingCallPage';
 import CallCtrlPage from 'ringcentral-widgets/containers/CallCtrlPage';
 import TransferPage from 'ringcentral-widgets/containers/TransferPage';
@@ -33,7 +30,6 @@ import AudioSettingsPage from 'ringcentral-widgets/containers/AudioSettingsPage'
 
 import MainView from '../MainView';
 import AppView from '../AppView';
-import ThirdPartyConferenceInviteButton from '../../components/ThirdPartyConferenceInviteButton';
 
 export default function App({
   phone,
@@ -186,24 +182,6 @@ export default function App({
                     showGroupNumberName
                   />
                 )} />
-              <Route
-                path="/conference/commands"
-                component={() => (
-                  <ConferenceCommands
-                    currentLocale={phone.locale.currentLocale}
-                    onBack={() => phone.routerInteraction.goBack()} />
-                )}
-              />
-              <Route
-                path="/conference"
-                component={
-                  () => (
-                    <ConferencePage
-                      additionalButtons={[ThirdPartyConferenceInviteButton]}
-                    />
-                  )
-                }
-              />
               <Route
                 path="/calls/active(/:sessionId)"
                 component={routerProps => (

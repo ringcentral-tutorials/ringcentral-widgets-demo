@@ -24,6 +24,7 @@ import Storage from 'ringcentral-integration/modules/Storage';
 import CallLog from 'ringcentral-integration/modules/CallLog';
 import CallMonitor from 'ringcentral-integration/modules/CallMonitor';
 import CallHistory from 'ringcentral-integration/modules/CallHistory';
+import CallHistoryUI from 'ringcentral-widgets/modules/CallHistoryUI';
 import Presence from 'ringcentral-integration/modules/Presence';
 import ExtensionPhoneNumber from 'ringcentral-integration/modules/ExtensionPhoneNumber';
 import ActiveCallsUI from 'ringcentral-widgets/modules/ActiveCallsUI';
@@ -34,16 +35,18 @@ import Ringout from 'ringcentral-integration/modules/Ringout';
 import NumberValidate from 'ringcentral-integration/modules/NumberValidate';
 import CallingSettings from 'ringcentral-integration/modules/CallingSettings';
 import AudioSettings from 'ringcentral-integration/modules/AudioSettings';
-import CallingSettingsUI from 'ringcentral-widgets/modules/CallingSettingsUI';
 import AudioSettingsUI from 'ringcentral-widgets/modules/AudioSettingsUI';
 import ForwardingNumber from 'ringcentral-integration/modules/ForwardingNumber';
 import DialerUI from 'ringcentral-widgets/modules/DialerUI';
+import CallBadgeUI from 'ringcentral-widgets/modules/CallBadgeUI';
+import { CallingSettingsUI } from 'ringcentral-widgets/modules/CallingSettingsUI';
 
 import OAuth from 'ringcentral-widgets/modules/ProxyFrameOAuth';
 import RouterInteraction from 'ringcentral-widgets/modules/RouterInteraction';
 import ConnectivityManager from 'ringcentral-widgets/modules/ConnectivityManager';
 import ConnectivityBadgeUI from 'ringcentral-widgets/modules/ConnectivityBadgeUI';
-import SettingsPageUI from 'ringcentral-widgets/modules/SettingsPageUI';
+import SettingsUI from 'ringcentral-widgets/modules/SettingsUI';
+import RegionSettingsUI from 'ringcentral-widgets/modules/RegionSettingsUI';
 import LoginUI from 'ringcentral-widgets/modules/LoginUI';
 import AlertUI from 'ringcentral-widgets/modules/AlertUI';
 
@@ -52,9 +55,6 @@ import Conversations from 'ringcentral-integration/modules/Conversations';
 import MessageSender from 'ringcentral-integration/modules/MessageSender';
 import ComposeText from 'ringcentral-integration/modules/ComposeText';
 import ComposeTextUI from 'ringcentral-widgets/modules/ComposeTextUI';
-
-import Conference from 'ringcentral-integration/modules/Conference';
-import ConferenceUI from 'ringcentral-widgets/modules/ConferenceUI';
 
 import Webphone from 'ringcentral-integration/modules/Webphone';
 import ExtensionDevice from 'ringcentral-integration/modules/ExtensionDevice';
@@ -71,13 +71,14 @@ import LocalPresence from '../LocalPresence';
   providers: [
     { provide: 'Alert', useClass: Alert },
     { provide: 'AlertUI', useClass: AlertUI },
+    { provide: 'RegionSettingsUI', useClass: RegionSettingsUI },
     { provide: 'Brand', useClass: Brand },
     { provide: 'Locale', useClass: Locale },
     { provide: 'GlobalStorage', useClass: GlobalStorage },
     { provide: 'ConnectivityMonitor', useClass: ConnectivityMonitor },
     { provide: 'ConnectivityManager', useClass: ConnectivityManager },
     { provide: 'ConnectivityBadgeUI', useClass: ConnectivityBadgeUI },
-    { provide: 'SettingsPageUI', useClass: SettingsPageUI },
+    { provide: 'SettingsUI', useClass: SettingsUI },
     { provide: 'LoginUI', useClass: LoginUI },
     { provide: 'Auth', useClass: Auth },
     { provide: 'OAuth', useClass: OAuth },
@@ -105,6 +106,8 @@ import LocalPresence from '../LocalPresence';
     { provide: 'Ringout', useClass: Ringout },
     { provide: 'NumberValidate', useClass: NumberValidate },
     { provide: 'CallingSettings', useClass: CallingSettings },
+    { provide: 'CallBadgeUI', useClass: CallBadgeUI },
+    { provide: 'CallHistoryUI', useClass: CallHistoryUI },
     {
       provide: 'CallOptions',
       useValue: {
@@ -116,6 +119,7 @@ import LocalPresence from '../LocalPresence';
       provide: 'CallingSettingsOptions',
       useValue: {
         emergencyCallAvailable: true,
+        showCallWithJupiter: true,
       },
       spread: true,
     },
@@ -130,10 +134,6 @@ import LocalPresence from '../LocalPresence';
     { provide: 'MessageSender', useClass: MessageSender },
     { provide: 'ComposeText', useClass: ComposeText },
     { provide: 'ComposeTextUI', useClass: ComposeTextUI },
-
-    { provide: 'Conference', useClass: Conference },
-    { provide: 'ConferenceUI', useClass: ConferenceUI },
-
     {
       provide: 'EnvironmentOptions',
       useFactory: ({ sdkConfig }) => sdkConfig,

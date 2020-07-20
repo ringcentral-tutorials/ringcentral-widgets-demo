@@ -17,9 +17,6 @@ import DialPadHoverIcon from 'ringcentral-widgets/assets/images/DialPadHover.svg
 import MessageIcon from 'ringcentral-widgets/assets/images/Messages.svg';
 import MessageHoverIcon from 'ringcentral-widgets/assets/images/MessagesHover.svg';
 
-import ConferenceIcon from 'ringcentral-widgets/assets/images/Conference.svg';
-import ConferenceHoverIcon from 'ringcentral-widgets/assets/images/ConferenceHover.svg';
-
 const TABS = [
   {
     icon: DialPadIcon,
@@ -41,15 +38,6 @@ const TABS = [
     noticeCounts: 0,
     isActive: currentPath => (
       currentPath === '/messages' || currentPath.indexOf('/conversations/') !== -1
-    ),
-  },
-  {
-    icon: ConferenceIcon,
-    activeIcon: ConferenceHoverIcon,
-    label: 'Schedule Conference',
-    path: '/conference',
-    isActive: currentPath => (
-      currentPath.substr(0, 11) === '/conference'
     ),
   },
   {
