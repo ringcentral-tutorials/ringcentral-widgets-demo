@@ -1,1 +1,1 @@
-export default 'ringcentral-widgets-demo';
+export default '@ringcentral-integration/widgets-demo';

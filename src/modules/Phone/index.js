@@ -1,69 +1,80 @@
-import SDK from 'ringcentral';
-import RingCentralClient from 'ringcentral-client';
+import SDK from '@ringcentral/sdk';
+import { RingCentralClient } from '@ringcentral-integration/commons/lib/RingCentralClient';
 
-import { ModuleFactory } from 'ringcentral-integration/lib/di';
-import RcModule from 'ringcentral-integration/lib/RcModule';
+import { ModuleFactory } from '@ringcentral-integration/commons/lib/di';
+import RcModule from '@ringcentral-integration/commons/lib/RcModule';
+import { LocalForageStorage } from '@ringcentral-integration/commons/lib/LocalForageStorage';
 
-import Alert from 'ringcentral-integration/modules/Alert';
-import Auth from 'ringcentral-integration/modules/Auth';
-import Brand from 'ringcentral-integration/modules/Brand';
-import AccountInfo from 'ringcentral-integration/modules/AccountInfo';
-import ConnectivityMonitor from 'ringcentral-integration/modules/ConnectivityMonitor';
-import DateTimeFormat from 'ringcentral-integration/modules/DateTimeFormat';
-import DialingPlan from 'ringcentral-integration/modules/DialingPlan';
-import ExtensionInfo from 'ringcentral-integration/modules/ExtensionInfo';
-import Environment from 'ringcentral-integration/modules/Environment';
-import GlobalStorage from 'ringcentral-integration/modules/GlobalStorage';
-import Locale from 'ringcentral-integration/modules/Locale';
-import RolesAndPermissions from 'ringcentral-integration/modules/RolesAndPermissions';
-import RegionSettings from 'ringcentral-integration/modules/RegionSettings';
-import RateLimiter from 'ringcentral-integration/modules/RateLimiter';
-import Subscription from 'ringcentral-integration/modules/Subscription';
-import Storage from 'ringcentral-integration/modules/Storage';
+import Alert from '@ringcentral-integration/commons/modules/Alert';
+import Auth from '@ringcentral-integration/commons/modules/Auth';
+import { Brand } from '@ringcentral-integration/commons/modules/BrandV2';
+import AccountInfo from '@ringcentral-integration/commons/modules/AccountInfo';
+import ConnectivityMonitor from '@ringcentral-integration/commons/modules/ConnectivityMonitor';
+import DateTimeFormat from '@ringcentral-integration/commons/modules/DateTimeFormat';
+import { DataFetcherV2 } from '@ringcentral-integration/commons/modules/DataFetcherV2';
+import DialingPlan from '@ringcentral-integration/commons/modules/DialingPlan';
+import ExtensionInfo from '@ringcentral-integration/commons/modules/ExtensionInfo';
+import Environment from '@ringcentral-integration/commons/modules/Environment';
+import GlobalStorage from '@ringcentral-integration/commons/modules/GlobalStorage';
+import Locale from '@ringcentral-integration/commons/modules/Locale';
+import RolesAndPermissions from '@ringcentral-integration/commons/modules/RolesAndPermissions';
+import { ExtensionFeatures } from '@ringcentral-integration/commons/modules/ExtensionFeatures';
+import RegionSettings from '@ringcentral-integration/commons/modules/RegionSettings';
+import RateLimiter from '@ringcentral-integration/commons/modules/RateLimiter';
+import Subscription from '@ringcentral-integration/commons/modules/Subscription';
+import { AlertUI } from '@ringcentral-integration/widgets/modules/AlertUI';
+import Storage from '@ringcentral-integration/commons/modules/Storage';
+import { SleepDetector } from '@ringcentral-integration/commons/modules/SleepDetectorV2';
+import { ConnectivityManager } from '@ringcentral-integration/widgets/modules/ConnectivityManager';
 
-import CallLog from 'ringcentral-integration/modules/CallLog';
-import CallMonitor from 'ringcentral-integration/modules/CallMonitor';
-import CallHistory from 'ringcentral-integration/modules/CallHistory';
-import CallHistoryUI from 'ringcentral-widgets/modules/CallHistoryUI';
-import Presence from 'ringcentral-integration/modules/Presence';
-import ExtensionPhoneNumber from 'ringcentral-integration/modules/ExtensionPhoneNumber';
-import ActiveCallsUI from 'ringcentral-widgets/modules/ActiveCallsUI';
+import CallLog from '@ringcentral-integration/commons/modules/CallLog';
+import CallMonitor from '@ringcentral-integration/commons/modules/CallMonitor';
+import CallHistory from '@ringcentral-integration/commons/modules/CallHistory';
+import { CallHistoryUI } from '@ringcentral-integration/widgets/modules/CallHistoryUI';
+import Presence from '@ringcentral-integration/commons/modules/Presence';
+import ExtensionPhoneNumber from '@ringcentral-integration/commons/modules/ExtensionPhoneNumber';
+import { ActiveCallsUI } from '@ringcentral-integration/widgets/modules/ActiveCallsUI';
 
-import Call from 'ringcentral-integration/modules/Call';
-import Softphone from 'ringcentral-integration/modules/Softphone';
-import Ringout from 'ringcentral-integration/modules/Ringout';
-import NumberValidate from 'ringcentral-integration/modules/NumberValidate';
-import CallingSettings from 'ringcentral-integration/modules/CallingSettings';
-import AudioSettings from 'ringcentral-integration/modules/AudioSettings';
-import AudioSettingsUI from 'ringcentral-widgets/modules/AudioSettingsUI';
-import ForwardingNumber from 'ringcentral-integration/modules/ForwardingNumber';
-import DialerUI from 'ringcentral-widgets/modules/DialerUI';
-import { CallingSettingsUI } from 'ringcentral-widgets/modules/CallingSettingsUI';
+import Call from '@ringcentral-integration/commons/modules/Call';
+import Softphone from '@ringcentral-integration/commons/modules/Softphone';
+import Ringout from '@ringcentral-integration/commons/modules/Ringout';
+import NumberValidate from '@ringcentral-integration/commons/modules/NumberValidate';
+import CallingSettings from '@ringcentral-integration/commons/modules/CallingSettings';
+import AudioSettings from '@ringcentral-integration/commons/modules/AudioSettings';
+import { AudioSettingsUI } from '@ringcentral-integration/widgets/modules/AudioSettingsUI';
+import ForwardingNumber from '@ringcentral-integration/commons/modules/ForwardingNumber';
+import DialerUI from '@ringcentral-integration/widgets/modules/DialerUI';
+import { DialerAndCallsTabUI } from '@ringcentral-integration/widgets/modules/DialerAndCallsTabUI';
+import { CallingSettingsUI } from '@ringcentral-integration/widgets/modules/CallingSettingsUI';
 
-import OAuth from 'ringcentral-widgets/modules/ProxyFrameOAuth';
-import RouterInteraction from 'ringcentral-widgets/modules/RouterInteraction';
-import ConnectivityManager from 'ringcentral-widgets/modules/ConnectivityManager';
-import ConnectivityBadgeUI from 'ringcentral-widgets/modules/ConnectivityBadgeUI';
-import SettingsUI from 'ringcentral-widgets/modules/SettingsUI';
-import RegionSettingsUI from 'ringcentral-widgets/modules/RegionSettingsUI';
-import LoginUI from 'ringcentral-widgets/modules/LoginUI';
-import AlertUI from 'ringcentral-widgets/modules/AlertUI';
+import OAuth from '@ringcentral-integration/widgets/modules/ProxyFrameOAuth';
+import RouterInteraction from '@ringcentral-integration/widgets/modules/RouterInteraction';
+import ConnectivityBadgeUI from '@ringcentral-integration/widgets/modules/ConnectivityBadgeUI';
+import SettingsUI from '@ringcentral-integration/widgets/modules/SettingsUI';
+import RegionSettingsUI from '@ringcentral-integration/widgets/modules/RegionSettingsUI';
+import LoginUI from '@ringcentral-integration/widgets/modules/LoginUI';
 
-import MessageStore from 'ringcentral-integration/modules/MessageStore';
-import Conversations from 'ringcentral-integration/modules/Conversations';
-import MessageSender from 'ringcentral-integration/modules/MessageSender';
-import ComposeText from 'ringcentral-integration/modules/ComposeText';
-import ComposeTextUI from 'ringcentral-widgets/modules/ComposeTextUI';
+import MessageStore from '@ringcentral-integration/commons/modules/MessageStore';
+import Conversations from '@ringcentral-integration/commons/modules/Conversations';
+import { ConversationsUI } from '@ringcentral-integration/widgets/modules/ConversationsUI';
+import { ConversationUI } from '@ringcentral-integration/widgets/modules/ConversationUI';
+import MessageSender from '@ringcentral-integration/commons/modules/MessageSender';
+import ComposeText from '@ringcentral-integration/commons/modules/ComposeText';
+import { ComposeTextUI } from '@ringcentral-integration/widgets/modules/ComposeTextUI';
 
-import Webphone from 'ringcentral-integration/modules/Webphone';
-import CallBadgeUI from 'ringcentral-widgets/modules/CallBadgeUI';
-import ExtensionDevice from 'ringcentral-integration/modules/ExtensionDevice';
-import AddressBook from 'ringcentral-integration/modules/AddressBook';
-import CompanyContacts from 'ringcentral-integration/modules/CompanyContacts';
-import AccountContacts from 'ringcentral-integration/modules/AccountContacts';
-import ContactMatcher from 'ringcentral-integration/modules/ContactMatcher';
-import Contacts from 'ringcentral-integration/modules/Contacts';
-import ContactSearch from 'ringcentral-integration/modules/ContactSearch';
+import Webphone from '@ringcentral-integration/commons/modules/Webphone';
+import { CallBadgeUI } from '@ringcentral-integration/widgets/modules/CallBadgeUI';
+import { IncomingCallUI } from '@ringcentral-integration/widgets/modules/IncomingCallUI';
+import { CallControlUI } from '@ringcentral-integration/widgets/modules/CallControlUI';
+import FlipUI from '@ringcentral-integration/widgets/modules/FlipUI';
+import TransferUI from '@ringcentral-integration/widgets/modules/TransferUI';
+import ExtensionDevice from '@ringcentral-integration/commons/modules/ExtensionDevice';
+import AddressBook from '@ringcentral-integration/commons/modules/AddressBook';
+import CompanyContacts from '@ringcentral-integration/commons/modules/CompanyContacts';
+import AccountContacts from '@ringcentral-integration/commons/modules/AccountContacts';
+import ContactMatcher from '@ringcentral-integration/commons/modules/ContactMatcher';
+import Contacts from '@ringcentral-integration/commons/modules/Contacts';
+import ContactSearch from '@ringcentral-integration/commons/modules/ContactSearch';
 import LocalPresence from '../LocalPresence';
 // user Dependency Injection with decorator to create a phone class
 // https://github.com/ringcentral/ringcentral-js-integration-commons/blob/master/docs/dependency-injection.md
@@ -74,6 +85,8 @@ import LocalPresence from '../LocalPresence';
     { provide: 'RegionSettingsUI', useClass: RegionSettingsUI },
     { provide: 'Brand', useClass: Brand },
     { provide: 'Locale', useClass: Locale },
+    { provide: 'DataFetcherV2', useClass: DataFetcherV2 },
+    { provide: 'SleepDetector', useClass: SleepDetector },
     { provide: 'GlobalStorage', useClass: GlobalStorage },
     { provide: 'ConnectivityMonitor', useClass: ConnectivityMonitor },
     { provide: 'ConnectivityManager', useClass: ConnectivityManager },
@@ -83,6 +96,14 @@ import LocalPresence from '../LocalPresence';
     { provide: 'Auth', useClass: Auth },
     { provide: 'OAuth', useClass: OAuth },
     { provide: 'Storage', useClass: Storage },
+    {
+      provide: 'StorageOptions',
+      useValue: {
+        StorageProvider: LocalForageStorage, // IndexedDB
+        disableInactiveTabsWrite: true,
+      },
+      spread: true,
+    },
     { provide: 'RateLimiter', useClass: RateLimiter },
     { provide: 'Subscription', useClass: Subscription },
     { provide: 'DateTimeFormat', useClass: DateTimeFormat },
@@ -93,6 +114,7 @@ import LocalPresence from '../LocalPresence';
     { provide: 'RegionSettings', useClass: RegionSettings },
     { provide: 'RolesAndPermissions', useClass: RolesAndPermissions },
     { provide: 'ExtensionInfo', useClass: ExtensionInfo },
+    { provide: 'ExtensionFeatures', useClass: ExtensionFeatures },
     { provide: 'DialingPlan', useClass: DialingPlan },
     { provide: 'CallLog', useClass: CallLog },
     { provide: 'CallMonitor', useClass: CallMonitor },
@@ -103,6 +125,7 @@ import LocalPresence from '../LocalPresence';
     { provide: 'ExtensionPhoneNumber', useClass: ExtensionPhoneNumber },
     { provide: 'Call', useClass: Call },
     { provide: 'DialerUI', useClass: DialerUI },
+    { provide: 'DialerAndCallsTabUI', useClass: DialerAndCallsTabUI },
     { provide: 'Softphone', useClass: Softphone },
     { provide: 'Ringout', useClass: Ringout },
     { provide: 'NumberValidate', useClass: NumberValidate },
@@ -131,6 +154,8 @@ import LocalPresence from '../LocalPresence';
 
     { provide: 'MessageStore', useClass: MessageStore },
     { provide: 'Conversations', useClass: Conversations },
+    { provide: 'ConversationUI', useClass: ConversationUI },
+    { provide: 'ConversationsUI', useClass: ConversationsUI },
     { provide: 'MessageSender', useClass: MessageSender },
     { provide: 'ComposeText', useClass: ComposeText },
     { provide: 'ComposeTextUI', useClass: ComposeTextUI },
@@ -150,7 +175,11 @@ import LocalPresence from '../LocalPresence';
       ],
     },
     { provide: 'Webphone', useClass: Webphone },
+    { provide: 'IncomingCallUI', useClass: IncomingCallUI },
+    { provide: 'CallControlUI', useClass: CallControlUI },
     { provide: 'CallBadgeUI', useClass: CallBadgeUI },
+    { provide: 'FlipUI', useClass: FlipUI },
+    { provide: 'TransferUI', useClass: TransferUI },
     { provide: 'ExtensionDevice', useClass: ExtensionDevice },
     { provide: 'AccountContacts', useClass: AccountContacts },
     { provide: 'CompanyContacts', useClass: CompanyContacts },
@@ -174,6 +203,7 @@ export default class BasePhone extends RcModule {
       webphone,
       routerInteraction,
       contactMatcher,
+      contacts,
     } = options;
     this._appConfig = appConfig;
 
@@ -208,28 +238,14 @@ export default class BasePhone extends RcModule {
 
     // ContactMatcher configuration
     contactMatcher.addSearchProvider({
-      name: 'personal',
-      searchFn: ({ queries }) => {
-        const result = {};
-        const phoneNumbers = queries;
-        phoneNumbers.forEach((phoneNumber) => {
-          result[phoneNumber] = this.addressBook.matchPhoneNumber(phoneNumber);
-        });
-        return result;
+      name: 'contacts',
+      async searchFn({ queries }) {
+        const items = await contacts.matchContacts({ phoneNumbers: queries });
+        return items;
       },
-      readyCheckFn: () => this.addressBook.ready,
-    });
-    contactMatcher.addSearchProvider({
-      name: 'company',
-      searchFn: ({ queries }) => {
-        const result = {};
-        const phoneNumbers = queries;
-        phoneNumbers.forEach((phoneNumber) => {
-          result[phoneNumber] = this.accountContacts.matchPhoneNumber(phoneNumber);
-        });
-        return result;
+      readyCheckFn() {
+        return contacts.ready;
       },
-      readyCheckFn: () => this.accountContacts.ready,
     });
   }
 
@@ -290,8 +306,18 @@ export function createPhone({
         provide: 'AppConfig',
         useValue: { name: brandConfig.appName, version: appVersion },
       },
-      { provide: 'BrandOptions', useValue: brandConfig, spread: true },
+      { provide: 'BrandConfig', useValue: brandConfig },
       { provide: 'OAuthOptions', useValue: { redirectUri }, spread: true },
+      {
+        provide: 'WebphoneOptions',
+        useValue: {
+          appKey: apiConfig.clientId,
+          appName: brandConfig.appName,
+          appVersion: appVersion,
+          webphoneLogLevel: 3,
+        },
+        spread: true,
+      },
     ]
   })
   class Phone extends BasePhone {}

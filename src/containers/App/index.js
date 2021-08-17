@@ -3,30 +3,31 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router';
 
-import PhoneProvider from 'ringcentral-widgets/lib/PhoneProvider';
-import CallingSettingsPage from 'ringcentral-widgets/containers/CallingSettingsPage';
-import RegionSettingsPage from 'ringcentral-widgets/containers/RegionSettingsPage';
-import SettingsPage from 'ringcentral-widgets/containers/SettingsPage';
-import LoginPage from 'ringcentral-widgets/containers/LoginPage';
+import PhoneProvider from '@ringcentral-integration/widgets/lib/PhoneProvider';
+import CallingSettingsPage from '@ringcentral-integration/widgets/containers/CallingSettingsPage';
+import RegionSettingsPage from '@ringcentral-integration/widgets/containers/RegionSettingsPage';
+import SettingsPage from '@ringcentral-integration/widgets/containers/SettingsPage';
+import LoginPage from '@ringcentral-integration/widgets/containers/LoginPage';
 
-import CallHistoryPage from 'ringcentral-widgets/containers/CallHistoryPage';
+import CallHistoryPage from '@ringcentral-integration/widgets/containers/CallHistoryPage';
 
-import DialerAndCallsTabContainer from 'ringcentral-widgets/containers/DialerAndCallsTabContainer';
-import ActiveCallsPage from 'ringcentral-widgets/containers/ActiveCallsPage';
-import DialerPage from 'ringcentral-widgets/containers/DialerPage';
+import { DialerAndCallsTabContainer } from '@ringcentral-integration/widgets/containers/DialerAndCallsTabContainer';
+import ActiveCallsPage from '@ringcentral-integration/widgets/containers/ActiveCallsPage';
+import DialerPage from '@ringcentral-integration/widgets/containers/DialerPage';
 
-import AlertContainer from 'ringcentral-widgets/containers/AlertContainer';
-import ConnectivityBadgeContainer from 'ringcentral-widgets/containers/ConnectivityBadgeContainer';
+import AlertContainer from '@ringcentral-integration/widgets/containers/AlertContainer';
+import ConnectivityBadgeContainer from '@ringcentral-integration/widgets/containers/ConnectivityBadgeContainer';
 
-import ComposeTextPage from 'ringcentral-widgets/containers/ComposeTextPage';
-import ConversationsPage from 'ringcentral-widgets/containers/ConversationsPage';
-import ConversationPage from 'ringcentral-widgets/containers/ConversationPage';
+import ComposeTextPage from '@ringcentral-integration/widgets/containers/ComposeTextPage';
+import ConversationsPage from '@ringcentral-integration/widgets/containers/ConversationsPage';
+import { ConversationPage } from '@ringcentral-integration/widgets/containers/ConversationPage';
 
-import IncomingCallPage from 'ringcentral-widgets/containers/IncomingCallPage';
-import CallCtrlPage from 'ringcentral-widgets/containers/CallCtrlPage';
-import TransferPage from 'ringcentral-widgets/containers/TransferPage';
-import CallBadgeContainer from 'ringcentral-widgets/containers/CallBadgeContainer';
-import AudioSettingsPage from 'ringcentral-widgets/containers/AudioSettingsPage';
+import { IncomingCallContainer } from '@ringcentral-integration/widgets/containers/IncomingCallContainer';
+import CallCtrlPage from '@ringcentral-integration/widgets/containers/CallCtrlPage';
+import TransferPage from '@ringcentral-integration/widgets/containers/TransferPage';
+import FlipPage from '@ringcentral-integration/widgets/containers/FlipPage';
+import CallBadgeContainer from '@ringcentral-integration/widgets/containers/CallBadgeContainer';
+import AudioSettingsPage from '@ringcentral-integration/widgets/containers/AudioSettingsPage';
 
 import MainView from '../MainView';
 import AppView from '../AppView';
@@ -54,7 +55,7 @@ export default function App({
                     phone.routerInteraction.push(`/calls/active/${sessionId}`);
                   }}
                 />
-                <IncomingCallPage
+                <IncomingCallContainer
                   showContactDisplayPlaceholder={false}
                   getAvatarUrl={
                     async (contact) => {
@@ -67,7 +68,7 @@ export default function App({
                     callingSettingsUrl="/settings/calling"
                     regionSettingsUrl="/settings/region"
                   />
-                </IncomingCallPage>
+                </IncomingCallContainer>
               </AppView>
             )} >
             <Route
@@ -207,6 +208,12 @@ export default function App({
                 path="/transfer/:sessionId(/:type)"
                 component={routerProps => (
                   <TransferPage params={routerProps.params} />
+                )}
+              />
+              <Route
+                path="/flip/:sessionId"
+                component={(routerProps) => (
+                  <FlipPage params={routerProps.params} />
                 )}
               />
             </Route>
