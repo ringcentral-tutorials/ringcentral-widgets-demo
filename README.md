@@ -52,7 +52,7 @@ $ yarn build
 
 Upload files in release folder to your web host.
 
-## [Tutorials](https://embbnux.github.io/ringcentral-widgets-demo/)
+## [Tutorials](https://ringcentral-tutorials.github.io/ringcentral-widgets-demo/)
 
 - [x] Create a base RingCentral Widget Project
 - [x] Add call history feature to App
