@@ -1,6 +1,6 @@
 # RingCentral Widgets Demo
 
-A new RingCentral Widgets Based demo app. Get online tutorial about how to build this app in [here](https://embbnux.github.io/ringcentral-widgets-demo/).
+A new RingCentral Widgets Based demo app. Get online tutorial about how to build this app in [here](https://ringcentral-tutorials.github.io/ringcentral-widgets-demo/).
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ $ npm install -g ringcentral-widgets-cli
 
 ## Start
 
-### Initialize Widgets App by `Ringcentral Widgets CLI`
+### Initialize Widgets App by `RingCentral Widgets CLI`
 
 ```bash
 $ rc-widgets new ringcentral-widgets-demo
@@ -27,7 +27,6 @@ $ yarn
 
 ```
 RINGCENTRAL_CLIENT_ID=your ringcentral app client id
-RINGCENTRAL_CLIENT_SECRET=your ringcentral app client secret
 RINGCENTRAL_SERVER_URL=ringcentral api server, eg: https://platform.devtest.ringcentral.com
 REDIRECT_URI=your redirect uri, eg: http://localhost:8080/redirect.html
 ```
