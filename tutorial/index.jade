@@ -6,9 +6,11 @@
 
         * Install Node.js with version >= 8
         * Create a [RingCentral developer free account](https://developer.ringcentral.com)
-        * Create a new RingCentral app with platform type - "Browser Based"
-        * Add `Read Accounts` and `Subscription Webhook` to permissions
-        * Install `ringcentral-widgets-cli` >= 0.2.0
+        * Create a new RingCentral app
+          * App type: REST API App
+          * 3-legged OAuth flow: Client side web app
+        * Add `Read Accounts` to permissions
+        * Install `ringcentral-widgets-cli` >= 0.3.0
 
     .step(data-title='Initialize base project', data-file='README.md', data-highlight='18-25')
       :markdown
@@ -42,13 +44,11 @@
 
         `RINGCENTRAL_CLIENT_ID` is your ringcentral app client id.
 
-        `RINGCENTRAL_CLIENT_SECRET` is your ringcentral app client secret.
-
         `RINGCENTRAL_SERVER_URL` is ringcentral api server, `https://platform.devtest.ringcentral.com` for sandbox environment and `https://platform.ringcentral.com` for production.
 
         `REDIRECT_URI` is redirect uri that needs to add in your app settings in RingCentral Developer Website. For development in local, it should be `http://localhost:8080/redirect.html`. After your deploy this app to network space, it should be `your_host_address/redirect.html`.
 
-    .step(data-title='Start development server', data-file='README.md', data-highlight='35-40')
+    .step(data-title='Start development server', data-file='README.md', data-highlight='34-39')
       :markdown
         Start development server
 
@@ -58,7 +58,7 @@
 
         Visit on [http://localhost:8080](http://localhost:8080) in browser
 
-    .step(data-title='Build for production', data-file='README.md', data-highlight='41-55')
+    .step(data-title='Build for production', data-file='README.md', data-highlight='40-53')
       :markdown
         Build for production
 
@@ -86,14 +86,14 @@
 
          Before we start, you need to add `Read CallLog` and `Edit Presence` permissions to your [RingCentral app](https://developer.ringcentral.com).
 
-    .step(data-title='Add call history related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='24-30,97-103')
+    .step(data-title='Add call history related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='30-36,119-123')
       :markdown
         ## Update Phone module
 
         * Import call history related modules
-        * Add call history related modules to dependences
+        * Add call history related modules to dependencies
 
-    .step(data-title='Add call history UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='12,137-144')
+    .step(data-title='Add call history UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='12,138-145')
       :markdown
         ## Update App container
 
@@ -111,7 +111,7 @@
       :markdown
         ## Play with Call History feature
 
-        Congradulations! Now you have finished adding call history feature to your app.
+        Congratulations! Now you have finished adding call history feature to your app.
 
         Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
   .chapter(data-title='Add ringout call feature to App')
@@ -129,14 +129,14 @@
 
         Before we start, you need to add `RingOut` permissions to your [RingCentral app](https://developer.ringcentral.com).
 
-    .step(data-title='Add call related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='32-42,104-125')
+    .step(data-title='Add call related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='38-48,126-148')
       :markdown
         ## Update Phone module
 
         * Import call related modules
         * Add call related modules to dependences
 
-    .step(data-title='Add call UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='7,14-16,120-136,145-162')
+    .step(data-title='Add call UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='7,14-16,121-137,146-163')
       :markdown
         ## Update App container
 
@@ -152,7 +152,7 @@
       :markdown
         ## Play with Call feature
 
-        Congradulations! Now you have finished adding call feature to your app. Now it supports to call with RingCentral Desktop and RingOut mode. Change calling mode in Calling Setting on Setting Page.
+        Congratulations! Now you have finished adding call feature to your app. Now it supports to call with RingCentral Phone Desktop and RingOut mode. Change calling mode in Calling Setting on Setting Page.
 
         Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
   .chapter(data-title='Add web phone feature to App')
@@ -171,24 +171,24 @@
         ### Add permissions
 
         Before we start, you need to add `VoIP Calling` permissions to your [RingCentral app](https://developer.ringcentral.com).
-    .step(data-title='Add web phone related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='58-66,152-166')
+    .step(data-title='Add web phone related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='65-77,177-195')
       :markdown
         ## Update Phone module
 
         * Import web phone related modules
-        * Add web phone related modules to dependences
-    .step(data-title='Add web phone UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='25-29,49-70,116-119,185-211')
+        * Add web phone related modules to dependencies
+    .step(data-title='Add web phone UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='25-30,50-71,117-120,186-218')
       :markdown
         ## Update App container
 
         * Import `IncomingCallPage`, `CallCtrlPage`, `CallBadgeContainer`, and `AudioSettingsPage` containers
         * Add containers to routers
-    .step(data-title='Add web phone hooks to Phone module', data-file='src/modules/Phone/index.js' data-highlight='179-207')
+    .step(data-title='Add web phone hooks to Phone module', data-file='src/modules/Phone/index.js' data-highlight='201-237')
       :markdown
         ## Add webphne hooks
 
         * Add webphone hook to drive route
-    .step(data-title='Add contacts matcher to Phone module', data-file='src/modules/Phone/index.js' data-highlight='64,159,208-233')
+    .step(data-title='Add contacts matcher to Phone module', data-file='src/modules/Phone/index.js' data-highlight='75,205,239-249')
       :markdown
         ## Add contact matcher
 
@@ -197,7 +197,7 @@
       :markdown
         ## Play with Web phone feature
 
-        Congradulations! Now you have finished adding web phone feature to your app. Now it supports to call with chrome in browser mode. Change calling mode in Calling Setting on Setting Page.
+        Congratulations! Now you have finished adding web phone feature to your app. Now it supports to call with chrome in browser mode. Change calling mode in Calling Setting on Setting Page.
 
         Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
   .chapter(data-title='Add messages feature to App')
@@ -214,14 +214,14 @@
          ### Add permissions
 
          Before we start, you need to add `SMS`, `Internal Messages`, `Read Messages` and `Edit Messages` permissions to your [RingCentral app](https://developer.ringcentral.com).
-    .step(data-title='Add messages related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='52-56,132-136')
+    .step(data-title='Add messages related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='57-63,155-161')
       :markdown
         ## Update Phone module
 
         * Import messages history related modules
         * Add message related modules to dependencies
 
-    .step(data-title='Add messages UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='20-23,163-184')
+    .step(data-title='Add messages UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='21-24,164-185')
       :markdown
         ## Update App container
 
@@ -239,7 +239,7 @@
       :markdown
         ## Play with messages feature
 
-        Congradulations! Now you have finished adding messages feature to your app.
+        Congratulations! Now you have finished adding messages feature to your app.
 
         Visit or refresh [http://localhost:8080](http://localhost:8080) to play with it.
   .chapter(data-title='Add a new module')
@@ -252,7 +252,7 @@
         ```
 
         It will create a module named LocalPresence with dependence Presence in `src/modules`.
-    .step(data-title='Add module to Phone module', data-file='src/modules/Phone/index.js' data-highlight='67,130')
+    .step(data-title='Add module to Phone module', data-file='src/modules/Phone/index.js' data-highlight='78,153')
       :markdown
         Import `LocalPresence` and add to phone module.
     .step(data-title='Subscription calls', data-file='src/modules/LocalPresence/index.js' data-highlight='62-67')
