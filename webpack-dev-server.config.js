@@ -10,8 +10,8 @@ const buildPath = path.resolve(__dirname, 'src');
 dotenv.config();
 
 const apiConfig = {
-  appKey: process.env.RINGCENTRAL_CLIENT_ID,
-  appSecret: process.env.RINGCENTRAL_CLIENT_SECRET,
+  clientId: process.env.RINGCENTRAL_CLIENT_ID,
+  clientSecret: process.env.RINGCENTRAL_CLIENT_SECRET,
   server: process.env.RINGCENTRAL_SERVER_URL,
   redirectUri: process.env.REDIRECT_URI,
 };
@@ -46,6 +46,15 @@ const config = {
         HOSTING_URL: JSON.stringify('http://localhost:8080'),
       },
     }),
+    new webpack.NormalModuleReplacementPlugin(
+      /\.\.\/ringcentral-integration/,  // TODO: fix wrong import path at widgets lib
+      function (resource) {
+        resource.request = resource.request.replace(
+          /\.\.\/\.\.\/\.\.\/ringcentral-integration/,
+          `@ringcentral-integration/commons`,
+        );
+      }
+    ),
   ],
   module: {
     rules: [
@@ -91,8 +100,9 @@ const config = {
       },
       {
         test: /\.png|\.jpg|\.gif|\.svg/,
-        exclude: /ringcentral-widgets(\/|\\)assets(\/|\\)images(\/|\\).+\.svg/,
-        use: 'url-loader?limit=20000&publicPath=./&name=images/[name]_[hash].[ext]',
+        exclude: /@ringcentral-integration(\/|\\)widgets(\/|\\)assets(\/|\\)images(\/|\\).+\.svg/,
+        use:
+          'url-loader?limit=20000&publicPath=./&name=images/[name]_[hash].[ext]',
       },
       {
         test: /\.sass|\.scss/,
