@@ -293,7 +293,7 @@ export function createPhone({
 }) {
   @ModuleFactory({
     providers: [
-      { provide: 'ModuleOptions', useValue: { prefix }, spread: true },
+      { provide: 'Prefix', useValue: prefix },
       {
         provide: 'SdkConfig',
         useValue: {
