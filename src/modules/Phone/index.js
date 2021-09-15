@@ -7,7 +7,8 @@ import { LocalForageStorage } from '@ringcentral-integration/commons/lib/LocalFo
 
 import Alert from '@ringcentral-integration/commons/modules/Alert';
 import Auth from '@ringcentral-integration/commons/modules/Auth';
-import { Brand } from '@ringcentral-integration/commons/modules/BrandV2';
+import { Brand } from '@ringcentral-integration/commons/modules/Brand';
+import { AppFeatures } from '@ringcentral-integration/commons/modules/AppFeatures';
 import AccountInfo from '@ringcentral-integration/commons/modules/AccountInfo';
 import ConnectivityMonitor from '@ringcentral-integration/commons/modules/ConnectivityMonitor';
 import DateTimeFormat from '@ringcentral-integration/commons/modules/DateTimeFormat';
@@ -16,8 +17,7 @@ import DialingPlan from '@ringcentral-integration/commons/modules/DialingPlan';
 import ExtensionInfo from '@ringcentral-integration/commons/modules/ExtensionInfo';
 import Environment from '@ringcentral-integration/commons/modules/Environment';
 import GlobalStorage from '@ringcentral-integration/commons/modules/GlobalStorage';
-import Locale from '@ringcentral-integration/commons/modules/Locale';
-import RolesAndPermissions from '@ringcentral-integration/commons/modules/RolesAndPermissions';
+import { Locale } from '@ringcentral-integration/commons/modules/Locale';
 import { ExtensionFeatures } from '@ringcentral-integration/commons/modules/ExtensionFeatures';
 import RegionSettings from '@ringcentral-integration/commons/modules/RegionSettings';
 import RateLimiter from '@ringcentral-integration/commons/modules/RateLimiter';
@@ -36,7 +36,7 @@ import ExtensionPhoneNumber from '@ringcentral-integration/commons/modules/Exten
 import { ActiveCallsUI } from '@ringcentral-integration/widgets/modules/ActiveCallsUI';
 
 import Call from '@ringcentral-integration/commons/modules/Call';
-import Softphone from '@ringcentral-integration/commons/modules/Softphone';
+import { Softphone } from '@ringcentral-integration/commons/modules/Softphone';
 import Ringout from '@ringcentral-integration/commons/modules/Ringout';
 import NumberValidate from '@ringcentral-integration/commons/modules/NumberValidate';
 import CallingSettings from '@ringcentral-integration/commons/modules/CallingSettings';
@@ -47,10 +47,10 @@ import DialerUI from '@ringcentral-integration/widgets/modules/DialerUI';
 import { DialerAndCallsTabUI } from '@ringcentral-integration/widgets/modules/DialerAndCallsTabUI';
 import { CallingSettingsUI } from '@ringcentral-integration/widgets/modules/CallingSettingsUI';
 
-import OAuth from '@ringcentral-integration/widgets/modules/ProxyFrameOAuth';
+import OAuth from '@ringcentral-integration/widgets/modules/OAuth';
 import RouterInteraction from '@ringcentral-integration/widgets/modules/RouterInteraction';
 import ConnectivityBadgeUI from '@ringcentral-integration/widgets/modules/ConnectivityBadgeUI';
-import SettingsUI from '@ringcentral-integration/widgets/modules/SettingsUI';
+import { SettingsUI } from '@ringcentral-integration/widgets/modules/SettingsUI';
 import RegionSettingsUI from '@ringcentral-integration/widgets/modules/RegionSettingsUI';
 import LoginUI from '@ringcentral-integration/widgets/modules/LoginUI';
 
@@ -112,7 +112,7 @@ import LocalPresence from '../LocalPresence';
     { provide: 'AccountInfo', useClass: AccountInfo },
     { provide: 'Environment', useClass: Environment },
     { provide: 'RegionSettings', useClass: RegionSettings },
-    { provide: 'RolesAndPermissions', useClass: RolesAndPermissions },
+    { provide: 'AppFeatures', useClass: AppFeatures },
     { provide: 'ExtensionInfo', useClass: ExtensionInfo },
     { provide: 'ExtensionFeatures', useClass: ExtensionFeatures },
     { provide: 'DialingPlan', useClass: DialingPlan },
