@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router';
 
-import PhoneProvider from '@ringcentral-integration/widgets/lib/PhoneProvider';
+import { PhoneProvider } from '@ringcentral-integration/widgets/lib/phoneContext';
 import CallingSettingsPage from '@ringcentral-integration/widgets/containers/CallingSettingsPage';
-import RegionSettingsPage from '@ringcentral-integration/widgets/containers/RegionSettingsPage';
+import { RegionSettingsPage } from '@ringcentral-integration/widgets/containers/RegionSettingsPage';
 import SettingsPage from '@ringcentral-integration/widgets/containers/SettingsPage';
-import LoginPage from '@ringcentral-integration/widgets/containers/LoginPage';
+import { LoginPage } from '@ringcentral-integration/widgets/containers/LoginPage';
 
 import CallHistoryPage from '@ringcentral-integration/widgets/containers/CallHistoryPage';
 
@@ -16,10 +16,10 @@ import ActiveCallsPage from '@ringcentral-integration/widgets/containers/ActiveC
 import DialerPage from '@ringcentral-integration/widgets/containers/DialerPage';
 
 import AlertContainer from '@ringcentral-integration/widgets/containers/AlertContainer';
-import ConnectivityBadgeContainer from '@ringcentral-integration/widgets/containers/ConnectivityBadgeContainer';
+import { ConnectivityBadgeContainer } from '@ringcentral-integration/widgets/containers/ConnectivityBadgeContainer';
 
 import ComposeTextPage from '@ringcentral-integration/widgets/containers/ComposeTextPage';
-import ConversationsPage from '@ringcentral-integration/widgets/containers/ConversationsPage';
+import { ConversationsPage } from '@ringcentral-integration/widgets/containers/ConversationsPage';
 import { ConversationPage } from '@ringcentral-integration/widgets/containers/ConversationPage';
 
 import { IncomingCallContainer } from '@ringcentral-integration/widgets/containers/IncomingCallContainer';

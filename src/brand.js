@@ -5,21 +5,21 @@ export default createBrandConfig({
   code: 'rc',
   name: 'RingCentral',
   appName: 'RingCentral',
-  fullName: 'RingCentral',
   application: 'RingCentral Widgets',
-  allowRegionSetting: true,
+  allowRegionSettings: true,
   callWithJupiter: {
-    default: {
-      link: 'https://app.ringcentral.com/',
-      protocol: 'rcapp://',
-      name: 'RingCentral',
-    },
+    link: 'https://app.ringcentral.com/',
+    protocol: 'rcapp://',
+    name: 'RingCentral App',
   },
-  rcvTeleconference: 'https://v.ringcentral.com/teleconference/',
+  callWithSoftphone: {
+    protocol: 'rcmobile://',
+    name: 'RingCentral Phone',
+  },
+  rcvTeleconference: 'https://v.ringcentral.com/teleconference',
   meetingUriReg: {
     rcm: undefined,
     rcv: undefined,
   },
-  spartanProtocol: 'rcmobile://',
   allowJupiterUniversalLink: true,
 });
