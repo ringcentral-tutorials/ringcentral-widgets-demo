@@ -6,43 +6,45 @@ import RcModule from '@ringcentral-integration/commons/lib/RcModule';
 import { LocalForageStorage } from '@ringcentral-integration/commons/lib/LocalForageStorage';
 
 import { Alert } from '@ringcentral-integration/commons/modules/Alert';
-import { Auth } from '@ringcentral-integration/commons/modules/AuthV2';
+import { Auth } from '@ringcentral-integration/commons/modules/Auth';
 import { Brand } from '@ringcentral-integration/commons/modules/Brand';
 import { AppFeatures } from '@ringcentral-integration/commons/modules/AppFeatures';
-import { AccountInfo } from '@ringcentral-integration/commons/modules/AccountInfoV2';
-import { ConnectivityMonitor } from '@ringcentral-integration/commons/modules/ConnectivityMonitorV2';
-import { DateTimeFormat } from '@ringcentral-integration/commons/modules/DateTimeFormatV2';
+import { AccountInfo } from '@ringcentral-integration/commons/modules/AccountInfo';
+import { ConnectivityMonitor } from '@ringcentral-integration/commons/modules/ConnectivityMonitor';
+import { DateTimeFormat } from '@ringcentral-integration/commons/modules/DateTimeFormat';
 import { DataFetcherV2 } from '@ringcentral-integration/commons/modules/DataFetcherV2';
-import { DialingPlan } from '@ringcentral-integration/commons/modules/DialingPlanV2';
-import { ExtensionInfo } from '@ringcentral-integration/commons/modules/ExtensionInfoV2';
-import { Environment } from '@ringcentral-integration/commons/modules/EnvironmentV2';
-import { GlobalStorage } from '@ringcentral-integration/commons/modules/GlobalStorageV2';
+import { DialingPlan } from '@ringcentral-integration/commons/modules/DialingPlan';
+import { ExtensionInfo } from '@ringcentral-integration/commons/modules/ExtensionInfo';
+import { ExtensionPhoneNumber } from '@ringcentral-integration/commons/modules/ExtensionPhoneNumber';
+import { Environment } from '@ringcentral-integration/commons/modules/Environment';
+import { GlobalStorage } from '@ringcentral-integration/commons/modules/GlobalStorage';
 import { Locale } from '@ringcentral-integration/commons/modules/Locale';
 import { ExtensionFeatures } from '@ringcentral-integration/commons/modules/ExtensionFeatures';
 import { RegionSettings } from '@ringcentral-integration/commons/modules/RegionSettings';
-import { RateLimiter } from '@ringcentral-integration/commons/modules/RateLimiterV2';
-import { Subscription } from '@ringcentral-integration/commons/modules/SubscriptionV2';
+import { RateLimiter } from '@ringcentral-integration/commons/modules/RateLimiter';
+import { TabManager } from '@ringcentral-integration/commons/modules/TabManager';
+import { RingCentralExtensions } from '@ringcentral-integration/commons/modules/RingCentralExtensions';
+import { WebSocketSubscription as Subscription } from '@ringcentral-integration/commons/modules/WebSocketSubscription';
 import { AlertUI } from '@ringcentral-integration/widgets/modules/AlertUI';
-import { Storage } from '@ringcentral-integration/commons/modules/StorageV2';
-import { SleepDetector } from '@ringcentral-integration/commons/modules/SleepDetectorV2';
+import { Storage } from '@ringcentral-integration/commons/modules/Storage';
+import { SleepDetector } from '@ringcentral-integration/commons/modules/SleepDetector';
 import { ConnectivityManager } from '@ringcentral-integration/widgets/modules/ConnectivityManager';
 
-import { CallLog } from '@ringcentral-integration/commons/modules/CallLogV2';
-import { CallMonitor } from '@ringcentral-integration/commons/modules/CallMonitorV2';
-import { CallHistory } from '@ringcentral-integration/commons/modules/CallHistoryV2';
+import { CallLog } from '@ringcentral-integration/commons/modules/CallLog';
+import { CallMonitor } from '@ringcentral-integration/commons/modules/CallMonitor';
+import { CallHistory } from '@ringcentral-integration/commons/modules/CallHistory';
 import { CallHistoryUI } from '@ringcentral-integration/widgets/modules/CallHistoryUI';
-import { Presence } from '@ringcentral-integration/commons/modules/PresenceV2';
-import { ExtensionPhoneNumber } from '@ringcentral-integration/commons/modules/ExtensionPhoneNumberV2';
+import { Presence } from '@ringcentral-integration/commons/modules/Presence';
 import { ActiveCallsUI } from '@ringcentral-integration/widgets/modules/ActiveCallsUI';
 
-import Call from '@ringcentral-integration/commons/modules/Call';
+import { Call } from '@ringcentral-integration/commons/modules/Call';
 import { Softphone } from '@ringcentral-integration/commons/modules/Softphone';
-import { Ringout } from '@ringcentral-integration/commons/modules/RingoutV2';
+import { Ringout } from '@ringcentral-integration/commons/modules/Ringout';
 import { NumberValidate } from '@ringcentral-integration/commons/modules/NumberValidate';
-import { CallingSettings } from '@ringcentral-integration/commons/modules/CallingSettingsV2';
-import { AudioSettings } from '@ringcentral-integration/commons/modules/AudioSettingsV2';
+import { CallingSettings } from '@ringcentral-integration/commons/modules/CallingSettings';
+import { AudioSettings } from '@ringcentral-integration/commons/modules/AudioSettings';
 import { AudioSettingsUI } from '@ringcentral-integration/widgets/modules/AudioSettingsUI';
-import { ForwardingNumber } from '@ringcentral-integration/commons/modules/ForwardingNumberV2';
+import { ForwardingNumber } from '@ringcentral-integration/commons/modules/ForwardingNumber';
 import { DialerUI } from '@ringcentral-integration/widgets/modules/DialerUI';
 import { DialerAndCallsTabUI } from '@ringcentral-integration/widgets/modules/DialerAndCallsTabUI';
 import { CallingSettingsUI } from '@ringcentral-integration/widgets/modules/CallingSettingsUI';
@@ -54,27 +56,27 @@ import { SettingsUI } from '@ringcentral-integration/widgets/modules/SettingsUI'
 import { RegionSettingsUI } from '@ringcentral-integration/widgets/modules/RegionSettingsUI';
 import { LoginUI } from '@ringcentral-integration/widgets/modules/LoginUI';
 
-import { MessageStore } from '@ringcentral-integration/commons/modules/MessageStoreV2';
-import { Conversations } from '@ringcentral-integration/commons/modules/ConversationsV2';
+import { MessageStore } from '@ringcentral-integration/commons/modules/MessageStore';
+import { Conversations } from '@ringcentral-integration/commons/modules/Conversations';
 import { ConversationsUI } from '@ringcentral-integration/widgets/modules/ConversationsUI';
 import { ConversationUI } from '@ringcentral-integration/widgets/modules/ConversationUI';
-import { MessageSender } from '@ringcentral-integration/commons/modules/MessageSenderV2';
-import { ComposeText } from '@ringcentral-integration/commons/modules/ComposeTextV2';
+import { MessageSender } from '@ringcentral-integration/commons/modules/MessageSender';
+import { ComposeText } from '@ringcentral-integration/commons/modules/ComposeText';
 import { ComposeTextUI } from '@ringcentral-integration/widgets/modules/ComposeTextUI';
 
-import { Webphone } from '@ringcentral-integration/commons/modules/WebphoneV2';
+import { Webphone } from '@ringcentral-integration/commons/modules/Webphone';
 import { CallBadgeUI } from '@ringcentral-integration/widgets/modules/CallBadgeUI';
 import { IncomingCallUI } from '@ringcentral-integration/widgets/modules/IncomingCallUI';
 import { CallControlUI } from '@ringcentral-integration/widgets/modules/CallControlUI';
 import { FlipUI } from '@ringcentral-integration/widgets/modules/FlipUI';
 import { TransferUI } from '@ringcentral-integration/widgets/modules/TransferUI';
-import { ExtensionDevice } from '@ringcentral-integration/commons/modules/ExtensionDeviceV2';
-import { AddressBook } from '@ringcentral-integration/commons/modules/AddressBookV2';
-import { CompanyContacts } from '@ringcentral-integration/commons/modules/CompanyContactsV2';
-import { AccountContacts } from '@ringcentral-integration/commons/modules/AccountContactsV2';
-import { ContactMatcher } from '@ringcentral-integration/commons/modules/ContactMatcherV2';
-import { Contacts } from '@ringcentral-integration/commons/modules/ContactsV2';
-import { ContactSearch } from '@ringcentral-integration/commons/modules/ContactSearchV2';
+import { ExtensionDevice } from '@ringcentral-integration/commons/modules/ExtensionDevice';
+import { AddressBook } from '@ringcentral-integration/commons/modules/AddressBook';
+import { CompanyContacts } from '@ringcentral-integration/commons/modules/CompanyContacts';
+import { AccountContacts } from '@ringcentral-integration/commons/modules/AccountContacts';
+import { ContactMatcher } from '@ringcentral-integration/commons/modules/ContactMatcher';
+import { Contacts } from '@ringcentral-integration/commons/modules/Contacts';
+import { ContactSearch } from '@ringcentral-integration/commons/modules/ContactSearch';
 import LocalPresence from '../LocalPresence';
 // user Dependency Injection with decorator to create a phone class
 // https://github.com/ringcentral/ringcentral-js-integration-commons/blob/master/docs/dependency-injection.md
@@ -105,6 +107,12 @@ import LocalPresence from '../LocalPresence';
       spread: false,
     },
     { provide: 'RateLimiter', useClass: RateLimiter },
+    { provide: 'TabManager', useClass: TabManager},
+    { provide: 'RingCentralExtensions', useClass: RingCentralExtensions },
+    {
+      provide: 'RingCentralExtensionsOptions',
+      useValue: { disconnectOnInactive: true },
+    },
     { provide: 'Subscription', useClass: Subscription },
     { provide: 'DateTimeFormat', useClass: DateTimeFormat },
     { provide: 'RouterInteraction', useClass: RouterInteraction },
