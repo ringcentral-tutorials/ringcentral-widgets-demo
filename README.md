@@ -6,7 +6,9 @@ A new RingCentral Widgets Based demo app. Get online tutorial about how to build
 
 * Install Node.js with version >= 14
 * Install NPM or Yarn
-* Create a [RingCentral developer free account](https://developer.ringcentral.com) to create a new app with platform type - "Browser Based"
+* Create a [RingCentral developer free account](https://developer.ringcentral.com)
+* Register a new REST API app with Auth type - "3-legged OAuth - client side", Redirect URI: `http://localhost:8080/redirect.html`
+* App scopes: `Edit Presence`, `Read Accounts`, `WebSocket Subscriptions`
 * Install [Ringcentral Widgets CLI](https://github.com/ringcentral/ringcentral-js-widgets/tree/master/packages/ringcentral-widgets-cli)
 
 ```bash
