@@ -1,6 +1,6 @@
 .chapter(data-title='Learn to build a RingCentral App with RingCentral Widgets')
   .chapter(data-title='Get started')
-    .step(data-title='Prerequisites', data-file='README.md', data-highlight='4-15')
+    .step(data-title='Prerequisites', data-file='README.md', data-highlight='4-16')
       :markdown
         ## Prerequisites
 
@@ -58,7 +58,7 @@
 
         Visit on [http://localhost:8080](http://localhost:8080) in browser
 
-    .step(data-title='Build for production', data-file='README.md', data-highlight='40-53')
+    .step(data-title='Build for production', data-file='README.md', data-highlight='42-55')
       :markdown
         Build for production
 
@@ -86,7 +86,7 @@
 
          Before we start, you need to add `Read CallLog` and `Edit Presence` permissions to your [RingCentral app](https://developer.ringcentral.com).
 
-    .step(data-title='Add call history related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='30-36,119-123')
+    .step(data-title='Add call history related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='33-38,127-131')
       :markdown
         ## Update Phone module
 
@@ -129,12 +129,12 @@
 
         Before we start, you need to add `RingOut` permissions to your [RingCentral app](https://developer.ringcentral.com).
 
-    .step(data-title='Add call related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='38-48,126-148')
+    .step(data-title='Add call related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='40-50,134-156')
       :markdown
         ## Update Phone module
 
         * Import call related modules
-        * Add call related modules to dependences
+        * Add call related modules to dependencies
 
     .step(data-title='Add call UI container and router to App container', data-file='src/containers/App/index.js' data-highlight='7,14-16,121-137,146-163')
       :markdown
@@ -171,7 +171,7 @@
         ### Add permissions
 
         Before we start, you need to add `VoIP Calling` permissions to your [RingCentral app](https://developer.ringcentral.com).
-    .step(data-title='Add web phone related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='65-77,177-195')
+    .step(data-title='Add web phone related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='67-79,185-203')
       :markdown
         ## Update Phone module
 
@@ -183,12 +183,12 @@
 
         * Import `IncomingCallPage`, `CallCtrlPage`, `CallBadgeContainer`, and `AudioSettingsPage` containers
         * Add containers to routers
-    .step(data-title='Add web phone hooks to Phone module', data-file='src/modules/Phone/index.js' data-highlight='201-237')
+    .step(data-title='Add web phone hooks to Phone module', data-file='src/modules/Phone/index.js' data-highlight='209-245')
       :markdown
-        ## Add webphne hooks
+        ## Add webphone hooks
 
         * Add webphone hook to drive route
-    .step(data-title='Add contacts matcher to Phone module', data-file='src/modules/Phone/index.js' data-highlight='75,205,239-249')
+    .step(data-title='Add contacts matcher to Phone module', data-file='src/modules/Phone/index.js' data-highlight='77,196,247-257')
       :markdown
         ## Add contact matcher
 
@@ -214,7 +214,7 @@
          ### Add permissions
 
          Before we start, you need to add `SMS`, `Internal Messages`, `Read Messages` and `Edit Messages` permissions to your [RingCentral app](https://developer.ringcentral.com).
-    .step(data-title='Add messages related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='57-63,155-161')
+    .step(data-title='Add messages related modules to Phone module', data-file='src/modules/Phone/index.js' data-highlight='59-65,163-169')
       :markdown
         ## Update Phone module
 
@@ -252,7 +252,7 @@
         ```
 
         It will create a module named LocalPresence with dependence Presence in `src/modules`.
-    .step(data-title='Add module to Phone module', data-file='src/modules/Phone/index.js' data-highlight='78,153')
+    .step(data-title='Add module to Phone module', data-file='src/modules/Phone/index.js' data-highlight='80,161')
       :markdown
         Import `LocalPresence` and add to phone module.
     .step(data-title='Subscription calls', data-file='src/modules/LocalPresence/index.js' data-highlight='62-67')
